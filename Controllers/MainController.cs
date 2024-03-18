@@ -21,7 +21,8 @@ namespace PrelimCoop.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var client = _context.ClientsInfoTbs.ToList();
+            return View(client);
         }
 
         

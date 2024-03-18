@@ -1,0 +1,49 @@
+@model List<PrelimCoop.Entities.ClientsInfoTb>
+    
+    <h3>list of Books</h3>
+    <a class="btn btn-success" href="/Main/create">Create New</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User Type</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Zip Code</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Age</th>
+      <th scope="col">Name of Father</th>
+      <th scope="col">Name of Mother</th>
+      <th scope="col">Civil Status</th>
+     <th scope="col">Religion</th>
+     <th scope="col">Occupation</th>
+      <th scope="col">Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+     @foreach(var client in Model){
+    <tr>
+      <th scope="row">@client.Id</th>
+      <td>@client.UserType</td>
+      <td>@client.FullName</td>
+      <th>@client.LastName</th>
+      <td>@client.Address</td>
+      <td>@client.ZipCode</td>
+      <th>@client.Birthday</th>
+      <td>@client.Age</td>
+      <td>@client.NameOfFather</td>
+      <td>@client.NameOfMother</td>
+      <td>@client.CivilStatus</td>
+       <td>@client.Religion</td>
+      <td>@client.Occupation</td>
+      <td>
+         <a class="btn btn-warning" >Update</a>
+        <a class="btn btn-danger" >Delete</a>
+      </td>
+      
+    </tr>
+    }
+   
+  </tbody>
+</table>
