@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {}
+    "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {
+    "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
+        "projectUniqueName": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
         "projectName": "PrelimCoop",
-        "projectPath": "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
+        "projectPath": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
         "packagesPath": "C:\\Users\\Secret Para Choi\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\obj\\",
+        "outputPath": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Secret Para Choi\\AppData\\Roaming\\NuGet\\NuGet.Config",

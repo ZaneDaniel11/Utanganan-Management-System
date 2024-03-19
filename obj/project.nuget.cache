@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cGisGbhLuqnnWb/zkK96rHjVttj5jGrU86PJFdP1vqo9rzWNQQoc8lN6x/1VkpwrYYiA2keAR46qdh2SmcgZnA==",
+  "dgSpecHash": "HJJLkqqD/vLuNWkrd98xybGtZxJa6AFPEhwj3FFTeBuqnaQOyjt/NN7TNUjEf6odlMopeGUbsqNUXlTKrLTjsA==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
+  "projectFilePath": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Secret Para Choi\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Secret Para Choi\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
