@@ -30,6 +30,4 @@ public partial class ClientsInfoTb
     public string Religion { get; set; } = null!;
 
     public string Occupation { get; set; } = null!;
-
-    public virtual Usertype? Usertype { get; set; }
 }

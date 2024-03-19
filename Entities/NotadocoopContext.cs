@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace PrelimCoop.Entities;
 
@@ -17,10 +18,8 @@ public partial class NotadocoopContext : DbContext
 
     public virtual DbSet<ClientsInfoTb> ClientsInfoTbs { get; set; }
 
-    public virtual DbSet<Usertype> Usertypes { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=localhost;database=notadocoop;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -60,26 +59,6 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.ZipCode)
                 .HasColumnType("int(100)")
                 .HasColumnName("ZIP_Code");
-        });
-
-        modelBuilder.Entity<Usertype>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("usertype");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnType("int(50)")
-                .HasColumnName("id");
-            entity.Property(e => e.Name)
-                .HasMaxLength(100)
-                .HasColumnName("name");
-
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Usertype)
-                .HasForeignKey<Usertype>(d => d.Id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("usertype_ibfk_1");
         });
 
         OnModelCreatingPartial(modelBuilder);
