@@ -1,0 +1,82 @@
+@model PrelimCoop.Entities.ClientsInfoTb
+
+<form asp-action="Update" method="post">
+    
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="UserType"></label>
+        <input asp-for="UserType" class="form-control" />
+        <span asp-validation-for="UserType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="ZipCode"></label>
+        <input asp-for="ZipCode" class="form-control" />
+        <span asp-validation-for="ZipCode" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="Birthday"></label>
+        <input asp-for="Birthday" class="form-control" />
+        <span asp-validation-for="Birthday" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="NameOfFather"></label>
+        <input asp-for="NameOfFather" class="form-control" />
+        <span asp-validation-for="NameOfFather" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="NameOfMother"></label>
+        <input asp-for="NameOfMother" class="form-control" />
+        <span asp-validation-for="NameOfMother" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="CivilStatus"></label>
+        <input asp-for="CivilStatus" class="form-control" />
+        <span asp-validation-for="CivilStatus" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="Religion"></label>
+        <input asp-for="Religion" class="form-control" />
+        <span asp-validation-for="Religion" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="Occupation"></label>
+        <input asp-for="Occupation" class="form-control" />
+        <span asp-validation-for="Occupation" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+
+
+</form>

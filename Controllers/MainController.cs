@@ -42,7 +42,30 @@ namespace PrelimCoop.Controllers
             return RedirectToAction("Index");
         }
 
-
         
+        [HttpGet]
+        public IActionResult Update(int Id) {
+            var client = _context.ClientsInfoTbs.Where( q => q.Id == Id).FirstOrDefault();
+            return View(client);
+        }
+           [HttpPost]
+        public IActionResult Update(ClientsInfoTb b) {
+
+            if(!ModelState.IsValid)
+                return View(b);
+
+            _context.ClientsInfoTbs.Update(b);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+         [HttpGet]
+        public IActionResult Delete(int id) {
+            var client = _context.ClientsInfoTbs.Where( q => q.Id == id).FirstOrDefault();
+            _context.ClientsInfoTbs.Remove(client);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
