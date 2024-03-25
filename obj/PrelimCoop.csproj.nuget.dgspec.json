@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {}
+    "C:\\Users\\FOR CLONE\\Documents\\GitHub\\PrelimCoop\\PrelimCoop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj": {
+    "C:\\Users\\FOR CLONE\\Documents\\GitHub\\PrelimCoop\\PrelimCoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
+        "projectUniqueName": "C:\\Users\\FOR CLONE\\Documents\\GitHub\\PrelimCoop\\PrelimCoop.csproj",
         "projectName": "PrelimCoop",
-        "projectPath": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\PrelimCoop.csproj",
-        "packagesPath": "C:\\Users\\Secret Para Choi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\obj\\",
+        "projectPath": "C:\\Users\\FOR CLONE\\Documents\\GitHub\\PrelimCoop\\PrelimCoop.csproj",
+        "packagesPath": "C:\\Users\\FOR CLONE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FOR CLONE\\Documents\\GitHub\\PrelimCoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Secret Para Choi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\FOR CLONE\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -83,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

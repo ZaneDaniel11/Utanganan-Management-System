@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace PrelimCoop.Entities;
 
@@ -9,11 +7,8 @@ public partial class ClientsInfoTb
 {
     public int Id { get; set; }
 
-    [DisplayName("Please Enter UserType")]
-    [Required]
     public string UserType { get; set; } = null!;
-    [DisplayName("Please Enter FullName")]
-    [Required]
+
     public string FullName { get; set; } = null!;
 
     public string LastName { get; set; } = null!;

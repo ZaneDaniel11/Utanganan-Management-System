@@ -18,6 +18,8 @@ public partial class NotadocoopContext : DbContext
 
     public virtual DbSet<ClientsInfoTb> ClientsInfoTbs { get; set; }
 
+    public virtual DbSet<Usertype> Usertypes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=localhost;database=notadocoop;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
@@ -59,6 +61,18 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.ZipCode)
                 .HasColumnType("int(100)")
                 .HasColumnName("ZIP_Code");
+        });
+
+        modelBuilder.Entity<Usertype>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("usertype");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Name).HasMaxLength(111);
         });
 
         OnModelCreatingPartial(modelBuilder);

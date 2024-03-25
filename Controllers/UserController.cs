@@ -5,18 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PrelimCoop.Entities;
 
 namespace PrelimCoop.Controllers
 {
 
     public class UserController : Controller
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly NotadocoopContext _context;
 
-   
+        public UserController(NotadocoopContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var user = _context.Usertypes.ToList();
+            return View(user);
         }
 
      
