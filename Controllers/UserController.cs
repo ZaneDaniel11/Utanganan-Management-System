@@ -21,10 +21,10 @@ namespace PrelimCoop.Controllers
 
         public IActionResult Index()
         {
-            var user = _context.Usertypes.ToList();
+           var user = _context.UserTypeDbs.ToList();
             return View(user);
         }
 
-     
+       
     }
 }

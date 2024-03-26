@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=localhost;Database=notadocoop;User=root;" Pomelo.EntityFrameworkCore.MySql -o Entities -f
