@@ -25,6 +25,11 @@ namespace PrelimCoop.Controllers
             return View(user);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
        
     }
 }
