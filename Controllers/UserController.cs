@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PrelimCoop.Entities;
 
+
 namespace PrelimCoop.Controllers
 {
 
@@ -30,6 +31,20 @@ namespace PrelimCoop.Controllers
         {
             return View();
         }
+        
+        [HttpGet]
+        public IActionResult Create(UserTypeDb Insert_User)
+        {
+            if(!ModelState.IsValid)
+                return View(Insert_User);
+                
+            _context.UserTypeDbs.Add(Insert_User);
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index");
+
+        }
+
        
     }
 }
