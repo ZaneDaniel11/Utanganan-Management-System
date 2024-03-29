@@ -32,7 +32,7 @@ namespace PrelimCoop.Controllers
             return View();
         }
         
-        [HttpGet]
+        [HttpPost]
         public IActionResult Create(UserTypeDb Insert_User)
         {
             if(!ModelState.IsValid)
