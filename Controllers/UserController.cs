@@ -45,6 +45,31 @@ namespace PrelimCoop.Controllers
 
         }
 
-       
+       [HttpGet]
+       public IActionResult Update(int Id)
+       {
+             var user = _context.UserTypeDbs.Where( q => q.Id == Id).FirstOrDefault();
+            return View(user);
+       }
+
+        [HttpPost]
+        public IActionResult Update(UserTypeDb b) {
+
+            if(!ModelState.IsValid)
+                return View(b);
+
+            _context.UserTypeDbs.Update(b);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id) {
+            var user = _context.UserTypeDbs.Where( q => q.Id == id).FirstOrDefault();
+            _context.UserTypeDbs.Remove(user);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
