@@ -1,7 +1,44 @@
 @model List<PrelimCoop.Entities.ClientsInfoTb>
-    
-    <h3>list of Books</h3>
-    <a class="btn btn-success" href="../main/create">Create New</a>
+
+<style>
+  /* Style for the table header */
+  .table-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+
+  /* Style for table rows */
+  .table-row {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  /* Style for table data cells */
+  .table-data {
+    padding: 8px;
+  }
+
+  /* Style for buttons */
+  .btn {
+    margin-right: 5px;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-warning {
+    background-color: #ffc107;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: black;
+  }
+</style>
+<h3>list of Books</h3>
+<a class="btn btn-success" href="../main/create">Create New</a>
 <table class="table">
   <thead>
     <tr>
@@ -16,34 +53,35 @@
       <th scope="col">Name of Father</th>
       <th scope="col">Name of Mother</th>
       <th scope="col">Civil Status</th>
-     <th scope="col">Religion</th>
-     <th scope="col">Occupation</th>
+      <th scope="col">Religion</th>
+      <th scope="col">Occupation</th>
       <th scope="col">Operation</th>
     </tr>
   </thead>
   <tbody>
-     @foreach(var client in Model){
-    <tr>
-      <th scope="row">@client.Id</th>
-      <td>@client.UserType</td>
-      <td>@client.FullName</td>
-      <th>@client.LastName</th>
-      <td>@client.Address</td>
-      <td>@client.ZipCode</td>
-      <th>@client.Birthday</th>
-      <td>@client.Age</td>
-      <td>@client.NameOfFather</td>
-      <td>@client.NameOfMother</td>
-      <td>@client.CivilStatus</td>
-       <td>@client.Religion</td>
-      <td>@client.Occupation</td>
-      <td>
+    @foreach (var client in Model)
+    {
+      <tr>
+        <th scope="row">@client.Id</th>
+        <td>@client.UserType</td>
+        <td>@client.FullName</td>
+        <th>@client.LastName</th>
+        <td>@client.Address</td>
+        <td>@client.ZipCode</td>
+        <th>@client.Birthday</th>
+        <td>@client.Age</td>
+        <td>@client.NameOfFather</td>
+        <td>@client.NameOfMother</td>
+        <td>@client.CivilStatus</td>
+        <td>@client.Religion</td>
+        <td>@client.Occupation</td>
+        <td>
           <a class="btn btn-warning" href="/main/update/@client.Id">Update</a>
           <a class="btn btn-danger" href="/main/delete/@client.Id">Delete</a>
-      </td>
-      
-    </tr>
+        </td>
+
+      </tr>
     }
-   
+
   </tbody>
 </table>
