@@ -17,7 +17,7 @@ public partial class ClientsInfoTb
 
     public int ZipCode { get; set; }
 
-    public string Birthday { get; set; } = null!;
+    public DateTime Birthday { get; set; }
 
     public int Age { get; set; }
 

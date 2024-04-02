@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PrelimCoop.Entities;
 
-public partial class UserTypeDb
+public partial class Usertypedb
 {
     public int Id { get; set; }
 

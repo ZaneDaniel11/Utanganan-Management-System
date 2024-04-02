@@ -22,7 +22,7 @@ namespace PrelimCoop.Controllers
 
         public IActionResult Index()
         {
-           var user = _context.UserTypeDbs.ToList();
+           var user = _context.Usertypedbs.ToList();
             return View(user);
         }
 
@@ -33,12 +33,13 @@ namespace PrelimCoop.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create(UserTypeDb Insert_User)
+        public IActionResult Create(Usertypedb Insert_User)
         {
+
             if(!ModelState.IsValid)
                 return View(Insert_User);
                 
-            _context.UserTypeDbs.Add(Insert_User);
+            _context.Usertypedbs.Add(Insert_User);
             _context.SaveChanges();
             
             return RedirectToAction("Index");
@@ -48,17 +49,17 @@ namespace PrelimCoop.Controllers
        [HttpGet]
        public IActionResult Update(int Id)
        {
-             var user = _context.UserTypeDbs.Where( q => q.Id == Id).FirstOrDefault();
+             var user = _context.Usertypedbs.Where( q => q.Id == Id).FirstOrDefault();
             return View(user);
        }
 
         [HttpPost]
-        public IActionResult Update(UserTypeDb b) {
+        public IActionResult Update(Usertypedb b) {
 
             if(!ModelState.IsValid)
                 return View(b);
 
-            _context.UserTypeDbs.Update(b);
+            _context.Usertypedbs.Update(b);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -66,8 +67,8 @@ namespace PrelimCoop.Controllers
 
         [HttpGet]
         public IActionResult Delete(int id) {
-            var user = _context.UserTypeDbs.Where( q => q.Id == id).FirstOrDefault();
-            _context.UserTypeDbs.Remove(user);
+            var user = _context.Usertypedbs.Where( q => q.Id == id).FirstOrDefault();
+            _context.Usertypedbs.Remove(user);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
