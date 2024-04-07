@@ -2,17 +2,8 @@
 
 
 @{
-    var currentDate = DateTime.Now.Date;
-    var birthday = Model.Birthday;
-    var age = currentDate.Year - birthday.Year;
-    if (currentDate.Month < birthday.Month || (currentDate.Month == birthday.Month && currentDate.Day < birthday.Day))
-    {
-        age--;
-         
-    }
+    ViewData["Title"] = "Create";
 }
-
-
 
 
 <form asp-action="Update" method="post">
@@ -52,15 +43,13 @@
   
     <div class="form-group">
         <label asp-for="Birthday"></label>
-        <input asp-for="Birthday" type="date" class="form-control">
+        <input asp-for="Birthday" id="birthdayInput" type="date" class="form-control">
     </div>
 
-        <div class="form-group">
+    <div class="form-group">
         <label asp-for="Age"></label>
-        <input asp-for="Age" value="@age" class="form-control" readonly >
-        <span asp-validation-for="Age" class="text-danger"></span>
+        <input asp-for="Age" id="ageInput" class="form-control" readonly>
     </div>
-
         <div class="form-group">
         <label asp-for="NameOfFather"></label>
         <input asp-for="NameOfFather" class="form-control" />
@@ -95,3 +84,22 @@
 
 
 </form>
+
+
+@section Scripts {
+    <script>
+       
+        function calculateAge() {
+            var currentDate = new Date();
+            var birthday = new Date(document.getElementById('birthdayInput').value);
+            var age = currentDate.getFullYear() - birthday.getFullYear();
+            if (currentDate.getMonth() < birthday.getMonth() || (currentDate.getMonth() == birthday.getMonth() && currentDate.getDate() < birthday.getDate())) {
+                age--;
+            }
+            document.getElementById('ageInput').value = age;
+        }
+
+       
+        document.getElementById('birthdayInput').addEventListener('change', calculateAge);
+    </script>
+}
