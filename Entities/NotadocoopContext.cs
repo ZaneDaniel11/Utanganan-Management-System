@@ -18,7 +18,7 @@ public partial class NotadocoopContext : DbContext
 
     public virtual DbSet<ClientsInfoTb> ClientsInfoTbs { get; set; }
 
-    public virtual DbSet<Usertypedb> Usertypedbs { get; set; }
+    public virtual DbSet<LoanDb> LoanDbs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -41,7 +41,7 @@ public partial class NotadocoopContext : DbContext
                 .HasColumnName("ID");
             entity.Property(e => e.Address).HasMaxLength(100);
             entity.Property(e => e.Age).HasColumnType("int(50)");
-            entity.Property(e => e.Birthday).HasMaxLength(6);
+            entity.Property(e => e.Birthday).HasMaxLength(100);
             entity.Property(e => e.CivilStatus)
                 .HasMaxLength(100)
                 .HasColumnName("Civil_Status");
@@ -63,14 +63,27 @@ public partial class NotadocoopContext : DbContext
                 .HasColumnName("ZIP_Code");
         });
 
-        modelBuilder.Entity<Usertypedb>(entity =>
+        modelBuilder.Entity<LoanDb>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("usertypedb");
+            entity.ToTable("loan_db");
 
-            entity.Property(e => e.Id).HasColumnType("int(11)");
-            entity.Property(e => e.Usertype).HasMaxLength(50);
+            entity.Property(e => e.Id).HasColumnType("int(50)");
+            entity.Property(e => e.Amount).HasColumnType("int(50)");
+            entity.Property(e => e.Client).HasMaxLength(200);
+            entity.Property(e => e.DateCreated).HasColumnName("Date_Created");
+            entity.Property(e => e.Deduction).HasColumnType("int(50)");
+            entity.Property(e => e.DueDate).HasColumnName("Due_Date");
+            entity.Property(e => e.Interest).HasMaxLength(200);
+            entity.Property(e => e.NoOfPayment)
+                .HasMaxLength(200)
+                .HasColumnName("No_Of_Payment");
+            entity.Property(e => e.RecievableAmount)
+                .HasColumnType("int(50)")
+                .HasColumnName("Recievable_Amount");
+            entity.Property(e => e.Status).HasMaxLength(200);
+            entity.Property(e => e.Type).HasMaxLength(200);
         });
 
         OnModelCreatingPartial(modelBuilder);
