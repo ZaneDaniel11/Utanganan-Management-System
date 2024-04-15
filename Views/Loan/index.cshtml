@@ -1,0 +1,43 @@
+@model List<PrelimCoop.Entities.LoanDb>;
+
+<a class="btn btn-success" href="./create">Create New</a>
+<table class="container">
+	<thead>
+		<tr>
+			<th>Client</th>
+			<th>Type</th>
+			<th>Amount</th>
+			<th>Interest</th>
+      <th>No of Payment</th>
+      <th>Deduction</th>
+      <th>Status</th>
+      <th>Date Created</th>
+      <th>Recievable Amount</th>
+      <th>Due Date</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		 @foreach (var loan in Model)
+    {
+      <tr>
+        <th scope="row">@loan.Id</th>
+        <td>@loan.Type</td>
+        <td>@loan.Amount</td>
+        <th>@loan.Interest</th>
+        <td>@loan.NoOfPayment</td>
+        <td>@loan.Deduction</td>
+        <td>@loan.Status</td>
+        <td>@loan.DateCreated</td>
+        <td>@loan.RecievableAmount</td>
+        <td>@loan.DueDate</td>
+        <td>
+          <a class="btn btn-warning" href="/main/update/@loan.Id">Update</a>
+          <a class="btn btn-danger" href="/main/delete/@loan.Id">Delete</a>
+        </td>
+
+      </tr>
+    }
+
+	</tbody>
+</table>
