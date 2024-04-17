@@ -7,14 +7,14 @@
          <input asp-for="Client" class="form-row" />
          <div class="underline"></div>
       </div>
+
       <div class="input-data">
-         <label for="cars">Type:</label>
-         <select asp-for="Type" id="cars" name="cars">
-            <option value="0.1">Daily</option>
-            <option value="0.3">Weekly</option>
-            <option value="0.5">Monthly</option>
-         </select>
+         <label for="">Status</label>
+         <input asp-for="Status" class="form-row" />
+         <div class="underline"></div>
+
       </div>
+      
    </div>
 
    <div class="form-row">
@@ -47,11 +47,15 @@
    </div>
 
    <div class="form-row">
+   
       <div class="input-data">
-         <label for="">Status</label>
-         <input asp-for="Status" class="form-row" />
-         <div class="underline"></div>
-
+         <label for="cars">Type:</label>
+         <select asp-for="Type" id="cars" name="cars">
+            <option value="0.1">Daily</option>
+            <option value="0.3">Weekly</option>
+            <option value="0.5">Monthly</option>
+            
+         </select>
       </div>
 
       <div class="input-data">
@@ -73,7 +77,6 @@
          <label for="">Due Date</label>
          <input asp-for="DueDate" type="date" class="form-row" />
          <div class="underline"></div>
-
 
       </div>
    </div>
@@ -97,7 +100,7 @@
 
    typeSelect.addEventListener('change', function() {
       const selectedType = parseFloat(this.value);
-      let defaultInterest = 0.05;
+      let defaultInterest = 0;
 
       if (selectedType === 0.1) {
          defaultInterest = 0.01; 
@@ -107,15 +110,16 @@
          defaultInterest = 0.05;
       }
 
-      const calculatedInterest = selectedType * defaultInterest;
+      const calculatedInterest = defaultInterest;
       interestInput.value = calculatedInterest.toFixed(2);
 
       const noOfPayment = parseFloat(noOfPaymentInput.value);
       const deduction = parseFloat(deductionInput.value);
       const amount = parseFloat(amountInput.value);
 
-      const receivableAmount = amount * calculatedInterest + (noOfPayment + deduction);
-      const result = amount - receivableAmount;
+      const receivableAmount = amount * calculatedInterest;
+      const result1 = receivableAmount * noOfPayment;
+      const result = amount - result1;
       receivableAmountInput.value = result.toFixed(2);
    });
 </script>
