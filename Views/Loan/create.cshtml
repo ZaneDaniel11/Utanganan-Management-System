@@ -87,7 +87,6 @@
    </div>
 </form>
 
-
 <script>
    const typeSelect = document.getElementById('cars');
    const interestInput = document.getElementById('interest');
@@ -98,7 +97,7 @@
 
    typeSelect.addEventListener('change', function() {
       const selectedType = parseFloat(this.value);
-      let defaultInterest = 0.01;
+      let defaultInterest = 0.05;
 
       if (selectedType === 0.1) {
          defaultInterest = 0.01; 
@@ -111,19 +110,12 @@
       const calculatedInterest = selectedType * defaultInterest;
       interestInput.value = calculatedInterest.toFixed(2);
 
-   
       const noOfPayment = parseFloat(noOfPaymentInput.value);
       const deduction = parseFloat(deductionInput.value);
       const amount = parseFloat(amountInput.value);
 
-      @* const interestResult = amount * calculatedInterest;
-      const noOfPaymentResult = interestResult * noOfPayment;
-      const deductionResult = noOfPaymentResult + deduction;
-
-      const amountResult = amountInput - deductionResult; *@
-
-      const receivableAmount = calculatedInterest * (noOfPayment + deduction) - amount;
-      receivableAmountInput.value = amountResult.toFixed(2);
+      const receivableAmount = amount * calculatedInterest + (noOfPayment + deduction);
+      const result = amount - receivableAmount;
+      receivableAmountInput.value = result.toFixed(2);
    });
 </script>
-

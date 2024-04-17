@@ -270,9 +270,9 @@ C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\staticwebassets.
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\scopedcss\bundle\PrelimCoop.styles.css
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\scopedcss\projectbundle\PrelimCoop.bundle.scp.css
-C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\PrelimCoop.csproj.Up2Date
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\PrelimCoop.dll
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\refint\PrelimCoop.dll
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\PrelimCoop.pdb
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\PrelimCoop.genruntimeconfig.cache
 C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\ref\PrelimCoop.dll
+C:\Users\FOR CLONE\Documents\GitHub\PrelimCoop\obj\Debug\net8.0\PrelimCoop.csproj.CopyComplete
