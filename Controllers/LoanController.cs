@@ -28,11 +28,55 @@ namespace PrelimCoop.Controllers
          [HttpGet]
         public IActionResult Create()
         {
-            var loan = new LoanDb(); // Create a new instance of ClientsInfoTb
+            var loan = new LoanDb(); 
             return View(loan);
+        }
+
+        [HttpPost]
+        public IActionResult Create(LoanDb CreateLoan)
+        {
+
+            if (!ModelState.IsValid)
+                return View(CreateLoan);
+
+            _context.LoanDbs.Add(CreateLoan);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+            
         }
 
 
        
+        [HttpGet]
+        public IActionResult Update(int Id)
+        {
+            
+            var client = _context.LoanDbs.Where(q => q.Id == Id).FirstOrDefault();
+            return View(client);
+        }
+        [HttpPost]
+        public IActionResult Update(LoanDb b)
+        {
+
+            if (!ModelState.IsValid)
+                return View(b);
+
+            _context.LoanDbs.Update(b);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var client = _context.ClientsInfoTbs.Where(q => q.Id == id).FirstOrDefault();
+            _context.ClientsInfoTbs.Remove(client);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
+
 }

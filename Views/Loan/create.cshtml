@@ -12,20 +12,13 @@
          <label for="">Status</label>
          <input asp-for="Status" class="form-row" />
          <div class="underline"></div>
-
       </div>
-      
    </div>
 
    <div class="form-row">
       <div class="input-data">
          <label for="">Amount</label>
          <input asp-for="Amount" id="amount" class="form-row" />
-         <div class="underline"></div>
-      </div>
-      <div class="input-data">
-         <label for="">Interest</label>
-         <input id="interest" asp-for="Interest" class="form-row" />
          <div class="underline"></div>
       </div>
    </div>
@@ -47,22 +40,28 @@
    </div>
 
    <div class="form-row">
-   
+
       <div class="input-data">
          <label for="cars">Type:</label>
          <select asp-for="Type" id="cars" name="cars">
             <option value="0.1">Daily</option>
             <option value="0.3">Weekly</option>
             <option value="0.5">Monthly</option>
-            
          </select>
       </div>
 
       <div class="input-data">
-         <label for="">Date Created</label>
-         <input asp-for="DateCreated" type="date" class="form-row" />
+         <label for="">Interest</label>
+         <input id="interest" asp-for="Interest" class="form-row" />
          <div class="underline"></div>
       </div>
+
+      <div class="input-data">
+        <label for="">Date Created</label>
+        <input asp-for="DateCreated" type="date" class="form-row" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
+        <div class="underline"></div>
+</div>
+
    </div>
 
    <div class="form-row">
@@ -78,17 +77,13 @@
          <input asp-for="DueDate" type="date" class="form-row" />
          <div class="underline"></div>
 
+
       </div>
    </div>
 
- 
-   <div class="form-row submit-btn">
-      <div class="input-data">
-         <div class="inner"></div>
-         <input type="submit" value="submit">
-      </div>
-   </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 
 <script>
    const typeSelect = document.getElementById('cars');
