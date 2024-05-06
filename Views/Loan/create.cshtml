@@ -1,87 +1,67 @@
 @model PrelimCoop.Entities.LoanDb;
 
 <form asp-action="Create" method="post">
-     <div class="form-row">
-      <div class="input-data">
-         <label for="">Client</label>
-         <input asp-for="Client" class="form-row" />
-         <div class="underline"></div>
-      </div>
 
-      <div class="input-data">
-         <label for="">Status</label>
-         <input asp-for="Status" class="form-row" />
-         <div class="underline"></div>
-      </div>
+<div class="row g-3">
+   <div class="col">
+      <label for="">Client</label>
+      <input type="text" class="form-control" placeholder="Client" asp-for="Client">
    </div>
-
-   <div class="form-row">
-      <div class="input-data">
-         <label for="">Amount</label>
-         <input asp-for="Amount" id="amount" class="form-row" />
-         <div class="underline"></div>
-      </div>
+   <div class="col">
+      <label for="">Status</label>
+      <input type="text" class="form-control" placeholder="Status"  asp-for="Status">
    </div>
+</div>
 
-
-   <div class="form-row">
-      <div class="input-data">
-         <label for="">No of Payment</label>
-         <input asp-for="NoOfPayment" id="noOfPayment" class="form-row" />
-         <div class="underline"></div>
-
-      </div>
-      <div class="input-data">
-         <label for="">Deduction</label>
-         <input asp-for="Deduction" id="deduction" class="form-row" />
-         <div class="underline"></div>
-
-      </div>
+<div class="row g-3">
+   <div class="col">
+      <label for="">Amount</label>
+      <input type="text" class="form-control" placeholder="Amount" asp-for="Amount" id="amount">
    </div>
+   <div class="col">
+      <label for="">No of Payment</label>
+      <input type="text" class="form-control" placeholder="Enter Number of Payment" asp-for="NoOfPayment" id="noOfPayment">
+   </div>
+</div>
 
-   <div class="form-row">
-
-      <div class="input-data">
-         <label for="cars">Type:</label>
-         <select asp-for="Type" id="cars" name="cars">
+<div class="row g-3">
+   <div class="col">
+       <label for="">Deduction</label>
+      <input type="text" class="form-control" placeholder="Enter Deduction"  asp-for="Deduction" id="deduction">
+   </div>
+   <div class="col">
+      <label for="">Type</label>
+      <select asp-for="Type" id="cars" name="cars">
             <option value="0.1">Daily</option>
             <option value="0.3">Weekly</option>
             <option value="0.5">Monthly</option>
-         </select>
-      </div>
-
-      <div class="input-data">
-         <label for="">Interest</label>
-         <input id="interest" asp-for="Interest" class="form-row" />
-         <div class="underline"></div>
-      </div>
-
-      <div class="input-data">
-        <label for="">Date Created</label>
-        <input asp-for="DateCreated" type="date" class="form-row" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
-        <div class="underline"></div>
+      </select>
+   </div>
 </div>
 
+<div class="row g-3">
+   <div class="col">
+      <label for="">Interest</label>
+      <input type="text" class="form-control" placeholder="Interest"  id="interest" asp-for="Interest">
    </div>
-
-   <div class="form-row">
-      <div class="input-data">
-         <label for="">Reciebale Amount</label>
-         <input asp-for="RecievableAmount" id="receivableAmount" type="number" class="form-row" />
-         <div class="underline"></div>
-
-      </div>
-
-      <div class="input-data">
-         <label for="">Due Date</label>
-         <input asp-for="DueDate" type="date" class="form-row" />
-         <div class="underline"></div>
-
-
-      </div>
+   <div class="col">
+      <label for="">Date Created</label>
+      <input type="text" class="form-control" placeholder="Enter Number of Payment" asp-for="DateCreated" type="date" class="form-row" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
    </div>
+</div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+<div class="row g-3">
+   <div class="col">
+      <label for="">Reciebale Amount</label>
+      <input type="text" class="form-control" placeholder="Recievable Amount" asp-for="RecievableAmount" id="receivableAmount" type="number">
+   </div>
+   <div class="col">
+       <label for="">Due Date</label>
+      <input type="text" class="form-control" placeholder="Enter Number of Payment" asp-for="DueDate" type="date">
+   </div>
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 
