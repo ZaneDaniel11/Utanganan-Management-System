@@ -1,4 +1,22 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿//elements 
+const btnToggler = window.document.querySelector(".navbar-toggler"); 
+const inputSearch = window.document.querySelector(".navbar-search"); 
+const iconSearch = window.document.querySelector("#icon-search");
+const navbar = window.document.querySelector(".navbar");
 
-// Write your JavaScript code.
+//events
+btnToggler.addEventListener('click', () => {
+    navbar.classList.toggle('active'); 
+});
+
+inputSearch.addEventListener('click', () => {
+    if(!navbar.classList.contains("active")) {
+        navbar.classList.add('active'); 
+    }
+});
+
+iconSearch.addEventListener('click', () => {
+    if(!navbar.classList.contains("active")) {
+        navbar.classList.add('active'); 
+    }
+});

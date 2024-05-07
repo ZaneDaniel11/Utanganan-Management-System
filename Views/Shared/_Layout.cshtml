@@ -1,45 +1,70 @@
-﻿<!DOCTYPE html>
+﻿
+
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PrelimCoop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PrelimCoop.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/load-table.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand">PrelimCoop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User">User</a>
-                        </li>
-                    </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sidebar</title>
+
+        <title>@ViewData["Title"] - PrelimCoop</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/PrelimCoop.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/load-table.css" asp-append-version="true" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" >
+  </head>
+    <body>
+        
+     
+        <nav class="navbar">            
+            <div class="navbar-container">
+       
+                <div class="navbar-logo-div">
+                    <a class="navbar-logo-link" href="#">
+                    </a>
+                    <button class="navbar-toggler"><i class='fas fa-solid fa-bars'></i></button>
                 </div>
+
+
+                <ul class="menu-list">   
+                    <li class="menu-item">   
+                          <a class="menu-link" asp-area="" asp-controller="Main">
+                            <span class="menu-link-text">Home</span>     
+                          </a>                     
+                    </li>
+                    <li class="menu-item">                 
+                        <a class="menu-link"  asp-area="" asp-controller="Loan">
+                            <span class="menu-link-text">Users</span>    
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="user-container">
+                <div class="user-info">
+                    <div class="user-details">
+                        <h3 class="user-name">Zane Daniel</h3>
+                        <p class="user-occupation">Pogi</p>
+                    </div>
+                </div>
+                <a class="logout-btn" href="#">
+                    <i class="fas fa-sharp fa-regular fa-arrow-right-from-bracket"></i>
+                </a>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+        <main class="dashboard pb-3" role="main">
             @RenderBody()
         </main>
-    </div>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+         <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-</body>
+    </body>
 </html>
+   
