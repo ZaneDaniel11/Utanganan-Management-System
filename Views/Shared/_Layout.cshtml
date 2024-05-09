@@ -14,7 +14,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="//cdn.datatables.net/2.0.6/css/dataTables.dataTables.min.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
+
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" >
   </head>
@@ -61,10 +62,11 @@
             @RenderBody()
         </main>
 
-        <script src="//cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/2.0.7/js/dataTables.min.js"></script>
          <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/table.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

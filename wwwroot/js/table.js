@@ -1,0 +1,2 @@
+	
+new DataTable('#load-table');
