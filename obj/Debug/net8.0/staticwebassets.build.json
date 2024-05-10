@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "c/ocjBQ4N3Ynn3br2bGBlNPiaRQm9+UVpdS0jnDCY5Q=",
+  "Hash": "kyLQCE09/Cr89F9d5sfuHCEE/P2HuCO1+wUQ/84aq6A=",
   "Source": "PrelimCoop",
   "BasePath": "_content/PrelimCoop",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\wwwroot\\js\\table.js",
+      "SourceId": "PrelimCoop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\wwwroot\\",
+      "BasePath": "_content/PrelimCoop",
+      "RelativePath": "js/table.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\table.js"
     },
     {
       "Identity": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

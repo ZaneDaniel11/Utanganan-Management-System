@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\wwwroot\\js\\table.js",
+      "PackagePath": "staticwebassets\\js\\table.js"
+    },
+    {
       "Id": "C:\\Users\\Secret Para Choi\\Desktop\\PrelimCoop\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
