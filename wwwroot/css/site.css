@@ -1,4 +1,10 @@
 /*css variables*/
+
+body
+{
+  background-color: black;
+  color: yellow;
+}
 :root {
   --body-bg-color: #dce4e3;
   --green: #18c29c;
