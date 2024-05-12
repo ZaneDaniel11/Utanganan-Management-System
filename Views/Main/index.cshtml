@@ -15,53 +15,6 @@
 
 <h3>list of Books</h3>
 <a class="btn btn-success" href="../main/create">Create New</a>
-@* <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" class="th">#</th>
-      <th scope="col">User Type</th>
-      <th scope="col">Full Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Address</th>
-      <th scope="col">Zip Code</th>
-      <th scope="col">Birthday</th>
-      <th scope="col">Age</th>
-      <th scope="col">Name of Father</th>
-      <th scope="col">Name of Mother</th>
-      <th scope="col">Civil Status</th>
-      <th scope="col">Religion</th>
-      <th scope="col">Occupation</th>
-      <th scope="col">Operation</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach (var client in Model)
-    {
-      <tr>
-        <th scope="row">@client.Id</th>
-        <td>@client.UserType</td>
-        <td>@client.FullName</td>
-        <th>@client.LastName</th>
-        <td>@client.Address</td>
-        <td>@client.ZipCode</td>
-        <th>@client.Birthday</th>
-        <td>@client.Age</td>
-        <td>@client.NameOfFather</td>
-        <td>@client.NameOfMother</td>
-        <td>@client.CivilStatus</td>
-        <td>@client.Religion</td>
-        <td>@client.Occupation</td>
-        <td>
-          <a class="btn btn-warning" href="/main/update/@client.Id">Update</a>
-          <a class="btn btn-danger" href="/main/delete/@client.Id">Delete</a>
-        </td>
-
-      </tr>
-    }
-
-  </tbody>
-</table> *@
-
 
 <table id="list-table" class="display" style="width:100%">
         <thead>
@@ -93,56 +46,147 @@
                   <div class="button-container">
                   <a href="/main/update/@client.Id"><i class="bi bi-arrow-up-circle-fill" style="color: blue;"></i></a>
                   <a  href="/main/delete/@client.Id"><i class="bi bi-trash"style="color: red; "></i></a> 
-                 <button class="btn btn-primary" onclick="updateClientInfo('@client.Id', '@client.FullName')">Make Loan</button>
-
-                  </div>
+                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoanModal" onclick="updateClientInfo('@client.Id', '@client.FullName @client.LastName')">Make Loan</button>
+                 </div>
                  </td>
-             
             </tr>
           </div>
-       
           </div>
     }
-        </tbody>
+   </tbody>
     </table>
 
-<div class="modal fade" id="loanModal" tabindex="-1" aria-labelledby="loanModalLabel" aria-hidden="true">
+<div class="modal fade" id="LoanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="loanModalLabel">Make Loan for Client:</h5>
-        <!-- Display the client's ID or name here -->
-        <span id="clientInfo"></span>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Laon For</h1><h1 id="clientInfo"></h1> 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Add form elements for making a loan -->
-        <form>
-          <!-- Hidden input field to store the client's ID -->
-          <input type="text" id="clientId" value="">
-          <div class="mb-3">
-            <label for="loanAmount" class="form-label">Loan Amount</label>
-            <input type="text" class="form-control" id="loanAmount" placeholder="Enter loan amount">
+
+        <form action="">
+          <input type="text" id="clientId">
+
+          <div class="row g-3">
+          <div class="col">
+              <label for="">Client</label>
+              <input type="text" class="form-control" placeholder="Client">
           </div>
-          <div class="mb-3">
-            <label for="loanTerm" class="form-label">Loan Term</label>
-            <input type="text" class="form-control" id="loanTerm" placeholder="Enter loan term">
+          <div class="col">
+              <label for="">Status</label>
+              <input type="text" class="form-control" placeholder="Status">
           </div>
-          <!-- Add more input fields as needed -->
-          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col">
+              <label for="">Amount</label>
+              <input type="text" class="form-control" placeholder="Amount" id="amount">
+          </div>
+          <div class="col">
+              <label for="">No of Payment</label>
+              <input type="text" class="form-control" placeholder="Enter Number of Payment" id="noOfPayment">
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col">
+              <label for="">Deduction</label>
+              <input type="text" class="form-control" placeholder="Enter Deduction" id="deduction">
+          </div>
+          <div class="col">
+              <label for="">Type</label>
+              <select  id="cars" name="cars">
+                    <option value="0.1">Daily</option>
+                    <option value="0.3">Weekly</option>
+                    <option value="0.5">Monthly</option>
+              </select>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col">
+              <label for="">Interest</label>
+              <input type="text" class="form-control" placeholder="Interest"  id="interest">
+          </div>
+          <div class="col">
+              <label for="">Date Created</label>
+              <input type="text" class="form-control" placeholder="Enter Number of Payment" type="date" class="form-row" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col">
+              <label for="">Reciebale Amount</label>
+              <input type="text" class="form-control" placeholder="Recievable Amount" id="receivableAmount" type="number">
+          </div>
+          <div class="col">
+              <label for="">Due Date</label>
+              <input type="text" class="form-control" placeholder="Enter Number of Payment"type="date">
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col">
+              <label for="">Reciebale Amount</label>
+              <input type="text" class="form-control" placeholder="Recievable Amount" id="receivableAmount" type="number">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>          
+
         </form>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- JavaScript to update client info in the modal -->
+
 <script>
-  // Function to update client info in the modal
+ 
   function updateClientInfo(clientId, clientName) {
     document.getElementById('clientId').value = clientId;
     document.getElementById('clientInfo').textContent = clientName;
   }
 
-  // Example usage: updateClientInfo(123, 'John Doe');
+
+   const typeSelect = document.getElementById('cars');
+   const interestInput = document.getElementById('interest');
+   const noOfPaymentInput = document.getElementById('noOfPayment');
+   const deductionInput = document.getElementById('deduction');
+   const amountInput = document.getElementById('amount');
+   const receivableAmountInput = document.getElementById('receivableAmount');
+
+   typeSelect.addEventListener('change', function() {
+      const selectedType = parseFloat(this.value);
+      let defaultInterest = 0;
+
+      if (selectedType === 0.1) {
+         defaultInterest = 0.01; 
+      } else if (selectedType === 0.3) {
+         defaultInterest = 0.03;
+      } else if (selectedType === 0.5) {
+         defaultInterest = 0.05;
+      }
+
+      const calculatedInterest = defaultInterest;
+      interestInput.value = calculatedInterest.toFixed(2);
+
+      const noOfPayment = parseFloat(noOfPaymentInput.value);
+      const deduction = parseFloat(deductionInput.value);
+      const amount = parseFloat(amountInput.value);
+
+      const receivableAmount = amount * calculatedInterest;
+      const result1 = receivableAmount * noOfPayment;
+      const result = amount - result1;
+      receivableAmountInput.value = result.toFixed(2);
+   });
+
+
+
 </script>
