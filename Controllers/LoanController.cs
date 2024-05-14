@@ -46,8 +46,6 @@ namespace PrelimCoop.Controllers
             return RedirectToAction("Index");
             
         }
-
-
        
         [HttpGet]
         public IActionResult Update(int Id)

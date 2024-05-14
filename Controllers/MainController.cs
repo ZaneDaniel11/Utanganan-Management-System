@@ -75,5 +75,12 @@ namespace PrelimCoop.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult GetClients()
+{
+    var clients = _context.ClientsInfoTbs.Select(c => new { Id = c.Id, Name = c.LastName }).ToList();
+    return Json(clients);
+}
+
     }
 }

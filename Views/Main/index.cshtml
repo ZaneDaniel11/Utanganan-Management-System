@@ -1,27 +1,28 @@
 @model List<PrelimCoop.Entities.ClientsInfoTb>;
-  
 
 
 <h3>list of Books</h3>
 <a class="btn btn-success" href="../main/create">Create New</a>
 
 <table id="list-table" class="display" style="width:100%">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>User Type</th>
-            <th>Full Name</th>
-            <th>Age</th>
-            <th>Address</th>
-            <th>Zip Code</th>
-            <th>Occupation</th>
-            <th>Operation</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var client in Model)
-        {
+        <thead>
             <tr>
+               <th>#</th>
+                <th>User Type</th>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Zip Code</th>
+                <th>Occupation</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+    {
+       <div class="ParentUserContainer">
+          <div class="userContainer">
+            <tr class="">
                 <td>@client.Id</td>
                 <td>@client.UserType</td>
                 <td>@client.FullName @client.LastName</td>
@@ -29,18 +30,19 @@
                 <td>@client.Address</td>
                 <td>@client.ZipCode</td>
                 <td>@client.Occupation</td>
-                <td>
-                    <div class="button-container">
-                        <a href="/main/update/@client.Id"><i class="bi bi-arrow-up-circle-fill" style="color: blue;"></i></a>
-                        <a href="/main/delete/@client.Id"><i class="bi bi-trash" style="color: red;"></i></a> 
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoanModal" onclick="updateClientInfo('@client.Id', '@client.FullName @client.LastName')">Make Loan</button>
-                    </div>
-                </td>
+                 <td>
+                  <div class="button-container">
+                  <a href="/main/update/@client.Id"><i class="bi bi-arrow-up-circle-fill" style="color: blue;"></i></a>
+                  <a  href="/main/delete/@client.Id"><i class="bi bi-trash"style="color: red; "></i></a> 
+                 <a href="/loan/create" onclick="updateClientInfo('@client.Id', '@client.FullName @client.LastName')"><button type="button" class="btn btn-primary">Make Loan</button></a>
+                 </div>
+                 </td>
             </tr>
-        }
-    </tbody>
-</table>
-
+          </div>
+          </div>
+    }
+   </tbody>
+    </table>
 
 <div class="modal fade" id="LoanModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -50,8 +52,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        
 
-        <form action="">
+       <form action="./Contollers/Loan/create" method="post">
+
           <input type="text" id="clientId">
 
           <div class="row g-3">
