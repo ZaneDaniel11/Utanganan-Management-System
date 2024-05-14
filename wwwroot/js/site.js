@@ -9,14 +9,3 @@ btnToggler.addEventListener('click', () => {
     navbar.classList.toggle('active'); 
 });
 
-inputSearch.addEventListener('click', () => {
-    if(!navbar.classList.contains("active")) {
-        navbar.classList.add('active'); 
-    }
-});
-
-iconSearch.addEventListener('click', () => {
-    if(!navbar.classList.contains("active")) {
-        navbar.classList.add('active'); 
-    }
-});

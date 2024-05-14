@@ -1,97 +1,94 @@
-﻿
-<style>
-    .form-style-9 {
-        max-width: 1000px;
-        background: #FAFAFA;
-        padding: 40px;
-        margin: 50px auto;
-        box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
-        border-radius: 10px;
-        margin-top: 0px;
-    }
+﻿ @* <style>
+        /* Your CSS styles here */
+        .form-style-9 {
+            max-width: 1000px;
+            background: #FAFAFA;
+            padding: 40px;
+            margin: 50px auto;
+            box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 10px;
+            margin-top: 0px;
+        }
 
-    .form-style-9 ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
+        .form-style-9 ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
 
-    .form-style-9 ul li {
-        display: block;
-        margin-bottom: 10px;
-        min-height: 35px;
-    }
+        .form-style-9 ul li {
+            display: block;
+            margin-bottom: 10px;
+            min-height: 35px;
+        }
 
-    .form-style-9 ul li .field-style {
-        box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        padding: 8px;
-        outline: none;
-        border: 1px solid rgb(133, 129, 129); /* Set border color to black */
-        -webkit-transition: all 0.30s ease-in-out;
-        -moz-transition: all 0.30s ease-in-out;
-        -ms-transition: all 0.30s ease-in-out;
-        -o-transition: all 0.30s ease-in-out;
-     
-    }
+        .form-style-9 ul li .field-style {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            padding: 8px;
+            outline: none;
+            border: 1px solid rgb(133, 129, 129);
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+        }
 
-    .form-style-9 ul li .field-style:focus {
-        box-shadow: 0 0 5px #B0CFE0;
-        border: 1px solid #B0CFE0;
-    }
+        .form-style-9 ul li .field-style:focus {
+            box-shadow: 0 0 5px #B0CFE0;
+            border: 1px solid #B0CFE0;
+        }
 
-    .form-style-9 ul li .field-split {
-        width: 49%;
-    }
+        .form-style-9 ul li .field-split {
+            width: 49%;
+        }
 
-    .form-style-9 ul li .field-full {
-        width: 100%;
-    }
+        .form-style-9 ul li .field-full {
+            width: 100%;
+        }
 
-    .form-style-9 ul li input.align-left {
-        float: left;
-    }
+        .form-style-9 ul li input.align-left {
+            float: left;
+        }
 
-    .form-style-9 ul li input.align-right {
-        float: right;
-    }
+        .form-style-9 ul li input.align-right {
+            float: right;
+        }
 
-    .form-style-9 ul li textarea {
-        width: 100%;
-        height: 100px;
-    }
+        .form-style-9 ul li textarea {
+            width: 100%;
+            height: 100px;
+        }
 
-    .form-style-9 ul li input[type="button"],
-    .form-style-9 ul li input[type="submit"] {
-        -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
-        -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
-        box-shadow: inset 0px 1px 0px 0px #3985B1;
-        background-color: #216288;
-        display: inline-block;
-        cursor: pointer;
-        color: #FFFFFF;
-        padding: 8px 18px;
-        text-decoration: none;
-        font: 12px Arial, Helvetica, sans-serif;
-    }
+        .form-style-9 ul li input[type="button"],
+        .form-style-9 ul li input[type="submit"] {
+            -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+            -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+            box-shadow: inset 0px 1px 0px 0px #3985B1;
+            background-color: #216288;
+            display: inline-block;
+            cursor: pointer;
+            color: #FFFFFF;
+            padding: 8px 18px;
+            text-decoration: none;
+            font: 12px Arial, Helvetica, sans-serif;
+        }
 
-    .form-style-9 ul li input[type="button"]:hover,
-    .form-style-9 ul li input[type="submit"]:hover {
-        background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
-        background-color: #28739E;
-    }
-</style>
+        .form-style-9 ul li input[type="button"]:hover,
+        .form-style-9 ul li input[type="submit"]:hover {
+            background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+            background-color: #28739E;
+        }
+    </style>
+</head>
+<body>
 
+<input type="text" id="inputSearch" placeholder="Search Clients">
 
-<div class="client-container d-flex flex-row flex-wrap">
+<div class="client-container d-flex flex-row flex-wrap"></div>
 
-</div>
-
-<div class="btn btn-success append-button">
-  
-</div>
-
+<div class="btn btn-success append-button">Append Client Card</div>
 
 <template class="client-card-template">
     <div class="card" style="width: 18rem;">
@@ -99,61 +96,48 @@
             <h5 class="card-title">ID</h5>
             <h6 class="card-subtitle mb-2 text-muted">Client Details</h6>
             <p class="card-text firstname">Firstname</p>
-            <p class="card-text lastname">lastname</p>
+            <p class="card-text lastname">Lastname</p>
             <p class="card-text address">Address</p>
             <a href="#" class="card-link">Another link</a>
         </div>
     </div>
 </template>
 
-<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function(){
-        
+    $(document).ready(function() {
+        var inputSearch = $('#inputSearch');
+        // Ensure inputSearch is correctly referenced
+
         $.ajax({
             url: 'http://localhost:5044/ClientAPI/GetClients'
         })
-        .done(function(result){
+        .done(function(result) {
             var template = document.querySelector(".client-card-template");
             var parent = document.querySelector(".client-container");
-            result.forEach(function( res ){
+            result.forEach(function(res) {
+                var clone = template.content.cloneNode(true);
 
-                var clone  = template.content.cloneNode(true);
-                
                 clone.querySelector(".card-title").innerHTML = res.id;
                 clone.querySelector(".firstname").innerHTML = res.fullName;
                 clone.querySelector(".lastname").innerHTML = res.lastName;
                 clone.querySelector(".address").innerHTML = res.address;
 
                 parent.append(clone);
-
             });
 
             console.table(result);
         })
-        .fail(function(result){
-            alert("nafail imong request");
-        }) ;
+        .fail(function(result) {
+            alert("Failed to fetch clients");
+        });
 
-        $(".append-button").click(function () {
+        $(".append-button").click(function() {
             var template = document.querySelector(".client-card-template");
             var parent = document.querySelector(".client-container");
             var clone = template.content.cloneNode(true);
             parent.append(clone);
         });
-
-
-    
     });
-
-
-
-    @* $("h1").click(function () {
-        if ($(this).hasClass("selected")) {
-        $(this).removeClass("selected");
-        } else {
-        $(this).addClass("selected");
-        }
-        }) *@
-
-</script>
+</script> *@
