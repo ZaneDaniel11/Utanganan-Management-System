@@ -1,23 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PrelimCoop.Entities;
 
 namespace PrelimCoop.Controllers
 {
-
     public class LoanController : Controller
     {
-       private readonly NotadocoopContext _context;
+        private readonly NotadocoopContext _context;
 
-       public LoanController(NotadocoopContext context)
-       {
+        public LoanController(NotadocoopContext context)
+        {
             _context = context;
-       }
+        }
 
         public IActionResult Index()
         {
@@ -25,43 +20,46 @@ namespace PrelimCoop.Controllers
             return View(loan);
         }
 
-         [HttpGet]
+        [HttpGet]
         public IActionResult Create()
         {
-            var loan = new LoanDb(); 
+            return View(new LoanDb());
+        }
+
+        [HttpPost]
+        public IActionResult Create(LoanDb createLoan)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(createLoan);
+            }
+
+            _context.LoanDbs.Add(createLoan);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var loan = _context.LoanDbs.FirstOrDefault(q => q.Id == id);
+            if (loan == null)
+            {
+                return NotFound();
+            }
             return View(loan);
         }
 
         [HttpPost]
-        public IActionResult Create(LoanDb CreateLoan)
+        public IActionResult Update(LoanDb loan)
         {
-
             if (!ModelState.IsValid)
-                return View(CreateLoan);
+            {
+                return View(loan);
+            }
 
-            _context.LoanDbs.Add(CreateLoan);
-
-            _context.SaveChanges();
-
-            return RedirectToAction("Index");
-            
-        }
-       
-        [HttpGet]
-        public IActionResult Update(int Id)
-        {
-            
-            var client = _context.LoanDbs.Where(q => q.Id == Id).FirstOrDefault();
-            return View(client);
-        }
-        [HttpPost]
-        public IActionResult Update(LoanDb b)
-        {
-
-            if (!ModelState.IsValid)
-                return View(b);
-
-            _context.LoanDbs.Update(b);
+            _context.LoanDbs.Update(loan);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
@@ -70,11 +68,16 @@ namespace PrelimCoop.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var client = _context.ClientsInfoTbs.Where(q => q.Id == id).FirstOrDefault();
-            _context.ClientsInfoTbs.Remove(client);
+            var loan = _context.LoanDbs.FirstOrDefault(q => q.Id == id);
+            if (loan == null)
+            {
+                return NotFound();
+            }
+
+            _context.LoanDbs.Remove(loan);
             _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }
-
 }

@@ -25,5 +25,7 @@ public partial class LoanDb
 
     public int RecievableAmount { get; set; }
 
+    public int PayableAmount { get; set; }
+
     public DateOnly DueDate { get; set; }
 }

@@ -79,6 +79,9 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.NoOfPayment)
                 .HasMaxLength(200)
                 .HasColumnName("No_Of_Payment");
+            entity.Property(e => e.PayableAmount)
+                .HasColumnType("int(50)")
+                .HasColumnName("Payable_amount");
             entity.Property(e => e.RecievableAmount)
                 .HasColumnType("int(50)")
                 .HasColumnName("Recievable_Amount");
