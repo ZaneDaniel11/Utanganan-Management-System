@@ -1,35 +1,31 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
-namespace PrelimCoop.Entities
+namespace PrelimCoop.Entities;
+
+public partial class LoanDb
 {
-    public partial class LoanDb
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        [Required(ErrorMessage = "ClientId is required")]
-        public required string ClientId { get; set; }
+    public string ClientId { get; set; } = null!;
 
-        [Required(ErrorMessage = "Status is required")]
-        public required string Status { get; set; }
+    public string Type { get; set; } = null!;
 
-        public decimal Amount { get; set; }
+    public int Amount { get; set; }
 
-        public int NoOfPayment { get; set; }
-        
-        public decimal Interest { get; set; }
+    public decimal Interest { get; set; }
 
-        public decimal Deduction { get; set; }
+    public string NoOfPayment { get; set; } = null!;
 
-        [Required(ErrorMessage = "Type is required")]
-        public string Type { get; set; }
+    public decimal Deduction { get; set; }
 
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+    public string Status { get; set; } = null!;
 
-        public decimal RecievableAmount { get; set; }
+    public DateOnly DateCreated { get; set; }
 
-        public decimal PayableAmount { get; set; }
+    public decimal RecievableAmount { get; set; }
 
-        public DateTime DueDate { get; set; }
-    }
+    public decimal PayableAmount { get; set; }
+
+    public DateOnly DueDate { get; set; }
 }

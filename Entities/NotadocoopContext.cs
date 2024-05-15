@@ -73,16 +73,17 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.Amount).HasColumnType("int(50)");
             entity.Property(e => e.ClientId).HasMaxLength(200);
             entity.Property(e => e.DateCreated).HasColumnName("Date_Created");
-            entity.Property(e => e.Deduction).HasColumnType("int(50)");
+            entity.Property(e => e.Deduction).HasPrecision(10);
             entity.Property(e => e.DueDate).HasColumnName("Due_Date");
+            entity.Property(e => e.Interest).HasPrecision(10);
             entity.Property(e => e.NoOfPayment)
                 .HasMaxLength(200)
                 .HasColumnName("No_Of_Payment");
             entity.Property(e => e.PayableAmount)
-                .HasColumnType("int(50)")
+                .HasPrecision(10)
                 .HasColumnName("Payable_amount");
             entity.Property(e => e.RecievableAmount)
-                .HasColumnType("int(50)")
+                .HasPrecision(10)
                 .HasColumnName("Recievable_Amount");
             entity.Property(e => e.Status).HasMaxLength(200);
             entity.Property(e => e.Type).HasMaxLength(200);

@@ -20,12 +20,12 @@ namespace PrelimCoop.Controllers
             return View(loan);
         }
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-            var loan = new LoadDb();
-            return View(loan);   
-        }
+   [HttpGet]
+public IActionResult Create()
+{
+    var loan = new LoanDb(); // Create an instance of LoanDb
+    return View(loan);   
+}
 
         [HttpPost]
         public IActionResult Create(LoanDb createLoan)
