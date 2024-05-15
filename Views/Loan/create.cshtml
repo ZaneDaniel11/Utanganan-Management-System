@@ -1,15 +1,13 @@
 @model PrelimCoop.Entities.LoanDb
 
-
 <h1>Create Loan</h1>
 @{
     ViewData["Title"] = "Create";
 }
 
 <form asp-action="Create" method="post">
-    
 
-     <div class="row g-3">
+    <div class="row g-3">
         <div class="col">
             <label asp-for="ClientId">Client</label>
             <select asp-for="ClientId" id="clientId" class="form-control"></select>
@@ -19,7 +17,7 @@
             <input asp-for="Status" type="text" class="form-control" placeholder="Status">
         </div>
     </div>
-    
+
     <div class="row g-3">
         <div class="col">
             <label asp-for="Amount">Amount</label>
@@ -39,9 +37,9 @@
         <div class="col">
             <label asp-for="Type">Type</label>
             <select asp-for="Type" id="typeofPayment" onchange="calculateDueDate()">
-                <option value="0.1">Daily</option>
-                <option value="0.3">Weekly</option>
-                <option value="0.5">Monthly</option>
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
             </select>
         </div>
     </div>
@@ -106,8 +104,10 @@
     const amountInput = document.getElementById('amount');
     const receivableAmountInput = document.getElementById('receivableAmount');
     const payableAmountInput = document.getElementById('payableAmount');
+    const dueDateInput = document.getElementById('dueDate'); // Define dueDateInput
 
     typeSelect.addEventListener('change', function() {
+        calculateDueDate();
         calculateAmounts();
     });
 
@@ -117,14 +117,14 @@
     });
 
     function calculateAmounts() {
-        const selectedType = parseFloat(typeSelect.value);
+        const selectedType = typeSelect.value;
         let defaultInterest = 0;
 
-        if (selectedType === 0.1) {
+        if (selectedType === 'Daily') {
             defaultInterest = 0.01;
-        } else if (selectedType === 0.3) {
+        } else if (selectedType === 'Weekly') {
             defaultInterest = 0.03;
-        } else if (selectedType === 0.5) {
+        } else if (selectedType === 'Monthly') {
             defaultInterest = 0.05;
         }
 
@@ -144,15 +144,15 @@
     }
 
     function calculateDueDate() {
-        const selectedType = parseFloat(typeSelect.value);
+        const selectedType = typeSelect.value; // Parse as string, no need for parseFloat
         const noOfPayment = parseInt(noOfPaymentInput.value);
 
         const currentDate = new Date();
-        if (selectedType === 0.1) {
+        if (selectedType === 'Daily') {
             currentDate.setDate(currentDate.getDate() + noOfPayment);
-        } else if (selectedType === 0.3) {
+        } else if (selectedType === 'Weekly') {
             currentDate.setDate(currentDate.getDate() + noOfPayment * 7);
-        } else if (selectedType === 0.5) {
+        } else if (selectedType === 'Monthly') {
             currentDate.setMonth(currentDate.getMonth() + noOfPayment);
         }
         dueDateInput.value = currentDate.toISOString().split('T')[0];
