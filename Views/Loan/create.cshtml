@@ -1,21 +1,24 @@
 @model PrelimCoop.Entities.LoanDb;
 
 <h1>Create Loan</h1>
+@{
+    ViewData["Title"] = "Create";
+}
 
 <form asp-action="Create" method="post">
-    <input type="hidden" id="selectedClientId" name="ClientId">
+    
 
-    <div class="row g-3">
+     <div class="row g-3">
         <div class="col">
-            <label>Client</label>
-            <select asp-for="Client" id="clientId" class="form-control"></select>
+            <label asp-for="ClientId">Client</label>
+            <select asp-for="ClientId" id="clientId" class="form-control"></select>
         </div>
         <div class="col">
             <label asp-for="Status">Status</label>
             <input asp-for="Status" type="text" class="form-control" placeholder="Status">
         </div>
     </div>
-
+    
     <div class="row g-3">
         <div class="col">
             <label asp-for="Amount">Amount</label>

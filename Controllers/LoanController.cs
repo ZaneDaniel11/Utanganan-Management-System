@@ -23,19 +23,19 @@ namespace PrelimCoop.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new LoanDb());
+            var loan = new LoadDb();
+            return View(loan);   
         }
 
         [HttpPost]
         public IActionResult Create(LoanDb createLoan)
         {
-            if (!ModelState.IsValid)
-            {
+              if (!ModelState.IsValid)
                 return View(createLoan);
-            }
 
             _context.LoanDbs.Add(createLoan);
             _context.SaveChanges();
+
 
             return RedirectToAction("Index");
         }
@@ -78,6 +78,13 @@ namespace PrelimCoop.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+    }
+
+    internal class LoadDb
+    {
+        public LoadDb()
+        {
         }
     }
 }
