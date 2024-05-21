@@ -84,10 +84,11 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.PayableAmount)
                 .HasPrecision(10)
                 .HasColumnName("Payable_amount");
-            entity.Property(e => e.ReceivableAmount)
+            entity.Property(e => e.RecievableAmount)
                 .HasPrecision(10)
                 .HasColumnName("Recievable_Amount");
             entity.Property(e => e.Status).HasMaxLength(200);
+            entity.Property(e => e.Term).HasColumnType("int(10)");
             entity.Property(e => e.Type).HasMaxLength(200);
         });
 

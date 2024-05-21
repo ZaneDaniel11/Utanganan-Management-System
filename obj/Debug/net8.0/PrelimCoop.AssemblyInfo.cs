@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrelimCoop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ae1c052d52673c7e77ba84eb634f3e3a2483d0b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29dc05f4f6f5932ce6de8fb429467b681acf7003")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrelimCoop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrelimCoop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
