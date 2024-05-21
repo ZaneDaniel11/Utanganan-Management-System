@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 08:58 PM
+-- Generation Time: May 21, 2024 at 09:18 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -80,7 +80,8 @@ CREATE TABLE `loan_db` (
 
 INSERT INTO `loan_db` (`Id`, `ClientId`, `Type`, `Amount`, `Interest`, `No_Of_Payment`, `Deduction`, `Status`, `Date_Created`, `Recievable_Amount`, `Payable_amount`, `Due_Date`, `Term`) VALUES
 (6, '8', 'Daily', 100, 0, '10', 100, 'pending', '2024-05-16', 100, 200, '0001-01-01', 0),
-(7, '6', 'Daily', 1000, 0, '10', 100, 'pending', '2024-05-16', 1000, 1200, '2024-05-25', 0);
+(7, '6', 'Daily', 1000, 0, '10', 100, 'pending', '2024-05-16', 1000, 1200, '2024-05-25', 0),
+(8, '6', 'Daily', 1000, 0, '10', 100, 'Died', '2024-05-22', 1000, 1200, '2024-05-31', 0);
 
 -- --------------------------------------------------------
 
@@ -93,9 +94,25 @@ CREATE TABLE `payments_tb` (
   `loan_id` int(50) NOT NULL,
   `client_id` int(50) NOT NULL,
   `collectable` int(50) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` date NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payments_tb`
+--
+
+INSERT INTO `payments_tb` (`id`, `loan_id`, `client_id`, `collectable`, `date`, `status`) VALUES
+(1, 8, 1, 100, '2024-05-22', 'Pending'),
+(2, 8, 1, 100, '2024-05-23', 'Pending'),
+(3, 8, 1, 100, '2024-05-24', 'Pending'),
+(4, 8, 1, 100, '2024-05-25', 'Pending'),
+(5, 8, 1, 100, '2024-05-26', 'Pending'),
+(6, 8, 1, 100, '2024-05-27', 'Pending'),
+(7, 8, 1, 100, '2024-05-28', 'Pending'),
+(8, 8, 1, 100, '2024-05-29', 'Pending'),
+(9, 8, 1, 100, '2024-05-30', 'Pending'),
+(10, 8, 1, 100, '2024-05-31', 'Pending');
 
 --
 -- Indexes for dumped tables
@@ -133,13 +150,13 @@ ALTER TABLE `clients_info_tb`
 -- AUTO_INCREMENT for table `loan_db`
 --
 ALTER TABLE `loan_db`
-  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `payments_tb`
 --
 ALTER TABLE `payments_tb`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

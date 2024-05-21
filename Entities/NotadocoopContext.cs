@@ -107,9 +107,7 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.Collectable)
                 .HasColumnType("int(50)")
                 .HasColumnName("collectable");
-            entity.Property(e => e.Date)
-                .HasColumnType("datetime")
-                .HasColumnName("date");
+            entity.Property(e => e.Date).HasColumnName("date");
             entity.Property(e => e.LoanId)
                 .HasColumnType("int(50)")
                 .HasColumnName("loan_id");
