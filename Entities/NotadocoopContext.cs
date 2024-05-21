@@ -20,6 +20,8 @@ public partial class NotadocoopContext : DbContext
 
     public virtual DbSet<LoanDb> LoanDbs { get; set; }
 
+    public virtual DbSet<PaymentsTb> PaymentsTbs { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=localhost;database=notadocoop;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
@@ -87,6 +89,32 @@ public partial class NotadocoopContext : DbContext
                 .HasColumnName("Recievable_Amount");
             entity.Property(e => e.Status).HasMaxLength(200);
             entity.Property(e => e.Type).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<PaymentsTb>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("payments_tb");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(50)")
+                .HasColumnName("id");
+            entity.Property(e => e.ClientId)
+                .HasColumnType("int(50)")
+                .HasColumnName("client_id");
+            entity.Property(e => e.Collectable)
+                .HasColumnType("int(50)")
+                .HasColumnName("collectable");
+            entity.Property(e => e.Date)
+                .HasColumnType("datetime")
+                .HasColumnName("date");
+            entity.Property(e => e.LoanId)
+                .HasColumnType("int(50)")
+                .HasColumnName("loan_id");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasColumnName("status");
         });
 
         OnModelCreatingPartial(modelBuilder);
