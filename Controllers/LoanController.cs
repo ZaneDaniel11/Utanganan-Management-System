@@ -19,6 +19,46 @@ namespace PrelimCoop.Controllers
             var loan = _context.LoanDbs.ToList();
             return View(loan);
         }
+         [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(LoanDb loan)
+    {
+        if (ModelState.IsValid)
+        {
+            _context.Add(loan);
+            await _context.SaveChangesAsync();
+            GeneratePaymentSchedule(loan);
+            return RedirectToAction(nameof(Index));
+        }
+        return View(loan);
+    }
+
+    private void GeneratePaymentSchedule(LoanDb loan)
+    {
+        var paymentSchedules = new List<PaymentsTb>();
+        var dailyPayment = loan.Amount / 10;
+        var startDate = loan.DateCreated;
+
+        for (int i = 0; i < 10; i++)
+        {
+            paymentSchedules.Add(new PaymentsTb
+            {
+                LoanId = loan.Id,
+                ClientId = 1, // Assuming a fixed clientId for simplicity
+                Collectable = dailyPayment,
+                Date = startDate.AddDays(i),
+                Status = "Pending"
+            });
+        }
+
+        _context.PaymentsTbs.AddRange(paymentSchedules);
+        _context.SaveChanges();
+    }
 
         // [HttpGet]
         // public IActionResult Create()

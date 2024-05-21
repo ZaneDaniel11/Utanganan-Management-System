@@ -13,7 +13,7 @@ public partial class PaymentsTb
 
     public int Collectable { get; set; }
 
-    public DateTime Date { get; set; }
+    public DateOnly Date { get; set; }
 
     public string Status { get; set; } = null!;
 }
