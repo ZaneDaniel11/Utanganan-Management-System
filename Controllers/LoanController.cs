@@ -20,25 +20,25 @@ namespace PrelimCoop.Controllers
             return View(loan);
         }
 
-   [HttpGet]
-public IActionResult Create()
-{
-    var loan = new LoanDb(); // Create an instance of LoanDb
-    return View(loan);   
-}
+        // [HttpGet]
+        // public IActionResult Create()
+        // {
+        //     var loan = new LoanDb(); // Create an instance of LoanDb
+        //     return View(loan);   
+        // }
 
-        [HttpPost]
-        public IActionResult Create(LoanDb createLoan)
-        {
-              if (!ModelState.IsValid)
-                return View(createLoan);
+        // [HttpPost]
+        // public IActionResult Create(LoanDb createLoan)
+        // {
+        //       if (!ModelState.IsValid)
+        //         return View(createLoan);
 
-            _context.LoanDbs.Add(createLoan);
-            _context.SaveChanges();
+        //     _context.LoanDbs.Add(createLoan);
+        //     _context.SaveChanges();
 
 
-            return RedirectToAction("Index");
-        }
+        //     return RedirectToAction("Index");
+        // }
 
         [HttpGet]
         public IActionResult Update(int id)
