@@ -17,9 +17,22 @@ namespace PrelimCoop.Controllers
 
         public IActionResult Index()
         {
+           
             var loan = _context.LoanDbs.ToList();
             return View(loan);
         }
+
+        [HttpGet]
+        public IActionResult View(int id)
+        {
+            var loan = _context.PaymentsTbs.FirstOrDefault(q => q.Id == id);
+            if (loan == null)
+            {
+                return NotFound(); // Return 404 if the loan with the specified id is not found
+            }
+            return View(loan.Id);
+        }
+
          [HttpGet]
     public IActionResult Create()
     {
@@ -44,7 +57,7 @@ namespace PrelimCoop.Controllers
 
         
         var paymentSchedules = new List<PaymentsTb>();
-        var dailyPayment = loan.Amount / 10;
+        var dailyPayment = loan.Amount/10;
         var startDate = loan.DateCreated;
         var clientid = loan.ClientId;
 

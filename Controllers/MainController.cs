@@ -77,10 +77,10 @@ namespace PrelimCoop.Controllers
         }
 
         public IActionResult GetClients()
-{
-    var clients = _context.ClientsInfoTbs.Select(c => new { Id = c.Id, Name = c.LastName }).ToList();
-    return Json(clients);
-}
+        {
+            var clients = _context.ClientsInfoTbs.Select(c => new { Id = c.Id, Name = c.LastName }).ToList();
+            return Json(clients);
+        }
 
     }
 }

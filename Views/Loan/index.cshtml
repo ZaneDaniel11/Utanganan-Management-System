@@ -21,7 +21,7 @@
 		 @foreach (var loan in Model)
     {
       <tr>
-        <th scope="row">@loan.Id</th>
+        <th scope="row">@loan.ClientId</th>
         <td>@loan.Type</td>
         <td>@loan.Amount</td>
         <td>@loan.NoOfPayment</td>
@@ -33,6 +33,7 @@
         <td>
           <a class="btn btn-warning" href="/loan/update/@loan.Id">Update</a>
           <a class="btn btn-danger" href="/loan/delete/@loan.Id">Delete</a>
+           <a class="btn btn-danger" href="/Loan/view/@loan.Id">View</a>
           
         </td>
       </tr>
