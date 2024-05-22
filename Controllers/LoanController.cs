@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using PrelimCoop.Entities;
 
@@ -40,16 +41,20 @@ namespace PrelimCoop.Controllers
 
     private void GeneratePaymentSchedule(LoanDb loan)
     {
+
+        
         var paymentSchedules = new List<PaymentsTb>();
         var dailyPayment = loan.Amount / 10;
         var startDate = loan.DateCreated;
+        var clientid = loan.ClientId;
 
         for (int i = 0; i < 10; i++)
         {
+       
             paymentSchedules.Add(new PaymentsTb
             {
                 LoanId = loan.Id,
-                ClientId = 1, // Assuming a fixed clientId for simplicity
+                ClientId = clientid,
                 Collectable = dailyPayment,
                 Date = startDate.AddDays(i),
                 Status = "Pending"

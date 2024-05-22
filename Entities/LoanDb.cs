@@ -7,7 +7,7 @@ public partial class LoanDb
 {
     public int Id { get; set; }
 
-    public string ClientId { get; set; } = null!;
+    public int ClientId { get; set; }
 
     public string Type { get; set; } = null!;
 
