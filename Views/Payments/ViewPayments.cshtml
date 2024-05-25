@@ -10,6 +10,7 @@
             <th>Collectable</th>
             <th>Date</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,12 @@
                 <td>@payment.Collectable</td>
                 <td>@payment.Date</td>
                 <td>@payment.Status</td>
+                <td>
+                    @if (payment.Status == "Pending")
+                    {
+                        <a href="/payments/pay/@payment.Id" class="btn btn-primary">Pay Collectable</a>
+                    }
+                </td>
             </tr>
         }
     </tbody>

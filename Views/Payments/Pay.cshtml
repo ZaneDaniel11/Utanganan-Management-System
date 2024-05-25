@@ -1,0 +1,12 @@
+@model PrelimCoop.Entities.PaymentsTb
+
+<h2>Pay Collectable</h2>
+
+<form asp-action="ProcessPayment">
+    <div class="form-group">
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" name="amount" class="form-control" required>
+    </div>
+    <input type="hidden" id="paymentId" name="paymentId" value="@Model.Id">
+    <button type="submit" class="btn btn-primary">Pay</button>
+</form>
