@@ -1,0 +1,29 @@
+@model List<PrelimCoop.Entities.PaymentsTb>
+
+<h2>Payments for Client</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Payment ID</th>
+            <th>Loan ID</th>
+            <th>Client ID</th>
+            <th>Collectable</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.Id</td>
+                <td>@payment.LoanId</td>
+                <td>@payment.ClientId</td>
+                <td>@payment.Collectable</td>
+                <td>@payment.Date</td>
+                <td>@payment.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
