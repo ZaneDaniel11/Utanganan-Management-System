@@ -38,77 +38,62 @@ namespace PrelimCoop.Controllers
             return View();
         }
 
-
-[HttpPost]
-public IActionResult Create(LoanDb loan)
-{
-    if (ModelState.IsValid)
-    {
-        loan.DateCreated = DateOnly.FromDateTime(DateTime.Now);
-        loan.DueDate = DateOnly.FromDateTime(loan.DueDate.ToDateTime(TimeOnly.MinValue)); // Ensure DueDate is properly converted if needed
-        _context.LoanDbs.Add(loan);
-        _context.SaveChanges();
-
-        // Generate payment schedule
-        GeneratePaymentSchedule(loan);
-
-        return RedirectToAction(nameof(Index));
-    }
-    return View(loan);
-}
-
-
-      private void GeneratePaymentSchedule(LoanDb loan)
-{
-    var paymentSchedules = new List<PaymentsTb>();
-    var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue); // Convert DateOnly to DateTime
-    var clientid = loan.ClientId;
-
-    int totalPayments = loan.NoOfPayment; // Assuming 10 payments for simplicity
-    int PayableAmount = loan.Amount / totalPayments;
-    
-    TimeSpan interval;
-    switch (loan.Type)
-    {
-        case "Weekly":
-            interval = TimeSpan.FromDays(7);
-            break;
-        case "Monthly":
-            interval = TimeSpan.FromDays(30); // Simplified month duration
-            break;
-        case "Daily":
-        default:
-            interval = TimeSpan.FromDays(1);
-            break;
-    }
-
-    for (int i = 0; i < totalPayments; i++)
-    {
-        paymentSchedules.Add(new PaymentsTb
+        [HttpPost]
+        public IActionResult Create(LoanDb loan)
         {
-            LoanId = loan.Id,
-            ClientId = clientid,
-            Collectable = PayableAmount,
-            Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)), // Convert DateTime to DateOnly
-            Status = "Pending"
-        });
-    }
+            if (ModelState.IsValid)
+            {
+                loan.DateCreated = DateOnly.FromDateTime(DateTime.Now);
+                loan.DueDate = DateOnly.FromDateTime(loan.DueDate.ToDateTime(TimeOnly.MinValue)); 
+                _context.LoanDbs.Add(loan);
+                _context.SaveChanges();
 
-    _context.PaymentsTbs.AddRange(paymentSchedules);
-    _context.SaveChanges();
-}
+                GeneratePaymentSchedule(loan);
 
-    [HttpGet]
-    public IActionResult ViewPayments(int clientId)
-    {
-        var payments = _context.PaymentsTbs.Where(p => p.ClientId == clientId).ToList();
-        if (payments == null || payments.Count == 0)
-        {
-            return NotFound();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(loan);
         }
-        return View(payments);
-    }
 
+        private void GeneratePaymentSchedule(LoanDb loan)
+        {
+            var paymentSchedules = new List<PaymentsTb>();
+            var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue); 
+            var clientid = loan.ClientId;
+
+            int totalPayments = loan.NoOfPayment; 
+            int PayableAmount = loan.Amount / totalPayments;
+
+            TimeSpan interval;
+            switch (loan.Type)
+            {
+                case "Weekly":
+                    interval = TimeSpan.FromDays(7);
+                    break;
+                case "Monthly":
+                    interval = TimeSpan.FromDays(30); 
+                    break;
+                case "Daily":
+                default:
+                    interval = TimeSpan.FromDays(1);
+                    break;
+            }
+
+            for (int i = 0; i < totalPayments; i++)
+            {
+                paymentSchedules.Add(new PaymentsTb
+                {
+                    LoanId = loan.Id,
+                    ClientId = clientid,
+                    Collectable = PayableAmount,
+                    Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)), 
+                    Status = "Pending"
+                });
+            }
+
+            _context.PaymentsTbs.AddRange(paymentSchedules);
+            _context.SaveChanges();
+        }
 
         [HttpGet]
         public IActionResult Update(int id)
@@ -150,7 +135,6 @@ public IActionResult Create(LoanDb loan)
             return RedirectToAction("Index");
         }
     }
-
 
     internal class LoadDb
     {

@@ -34,10 +34,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hblxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Secret Para Choi/Desktop/PrelimCoop/Views/Loan/test.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hblx0ZXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Secret Para Choi/Desktop/PrelimCoop/Views/Loan/ViewPayments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9hblxWaWV3UGF5bWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -60,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Secret Para Choi/Desktop/PrelimCoop/Views/Pages/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnZXNcaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Secret Para Choi/Desktop/PrelimCoop/Views/Payments/ViewPayments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudHNcVmlld1BheW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Secret Para Choi/Desktop/PrelimCoop/Views/Shared/Error.cshtml]

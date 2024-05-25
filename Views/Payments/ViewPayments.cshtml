@@ -1,18 +1,12 @@
 @model List<PrelimCoop.Entities.PaymentsTb>
 
-@{
-    ViewData["Title"] = "View Payments";
-}
+<h2>Payments</h2>
 
-<h2>View Payments</h2>
-
-<a class="btn btn-primary" href="/loan/index">Back to Loans</a>
-
-<table class="table table-striped">
+<table class="table">
     <thead>
         <tr>
-            <th>Client ID</th>
             <th>Loan ID</th>
+            <th>Client ID</th>
             <th>Collectable</th>
             <th>Date</th>
             <th>Status</th>
@@ -22,8 +16,8 @@
         @foreach (var payment in Model)
         {
             <tr>
-                <td>@payment.ClientId</td>
                 <td>@payment.LoanId</td>
+                <td>@payment.ClientId</td>
                 <td>@payment.Collectable</td>
                 <td>@payment.Date</td>
                 <td>@payment.Status</td>
