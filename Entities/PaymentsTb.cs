@@ -11,7 +11,7 @@ public partial class PaymentsTb
 
     public int ClientId { get; set; }
 
-    public int Collectable { get; set; }
+    public decimal Collectable { get; set; }
 
     public DateOnly Date { get; set; }
 
