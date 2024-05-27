@@ -17,8 +17,8 @@ namespace PrelimCoop.Controllers
 
         public IActionResult Index()
         {
-            var loan = _context.LoanDbs.ToList();
-            return View(loan);
+            var loans = _context.LoanDbs.ToList();
+            return View(loans);
         }
 
         [HttpGet]
@@ -58,10 +58,9 @@ namespace PrelimCoop.Controllers
        private void GeneratePaymentSchedule(LoanDb loan)
 {
     var paymentSchedules = new List<PaymentsTb>();
-    var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue);
+    var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue); 
     var clientid = loan.ClientId;
 
-    // Determine the interest rate based on loan type
     double interestRate;
     TimeSpan interval;
     switch (loan.Type)
@@ -81,11 +80,9 @@ namespace PrelimCoop.Controllers
             break;
     }
 
-    // Calculate total amount with interest
     double totalAmountWithInterest = loan.Amount * Math.Pow(1 + interestRate, loan.NoOfPayment);
-
-    // Determine payment amount per period
     double paymentAmountPerPeriod = totalAmountWithInterest / loan.NoOfPayment;
+    double deduction = (totalAmountWithInterest - loan.Amount) / loan.NoOfPayment;
 
     for (int i = 0; i < loan.NoOfPayment; i++)
     {
@@ -94,8 +91,9 @@ namespace PrelimCoop.Controllers
             LoanId = loan.Id,
             ClientId = clientid,
             Collectable = (decimal)paymentAmountPerPeriod,
-            Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)),
-            Status = "Pending"
+            Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)), 
+            Status = "Pending",
+            Deduction = (decimal)deduction // Assign the deduction value to the Deduction property of PaymentsTb
         });
     }
 
@@ -142,13 +140,6 @@ namespace PrelimCoop.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
-        }
-    }
-
-    internal class LoadDb
-    {
-        public LoadDb()
-        {
         }
     }
 }

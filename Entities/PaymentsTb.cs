@@ -13,6 +13,8 @@ public partial class PaymentsTb
 
     public decimal Collectable { get; set; }
 
+    public decimal Deduction { get; set; }
+
     public DateOnly Date { get; set; }
 
     public string Status { get; set; } = null!;

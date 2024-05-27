@@ -24,19 +24,20 @@ namespace PrelimCoop.Controllers
             }
             return View(payments);
         }
-          [HttpGet]
-    public IActionResult Pay(int id)
-    {
-        var payment = _context.PaymentsTbs.FirstOrDefault(p => p.Id == id);
-        if (payment == null || payment.Status != "Pending")
+
+        [HttpGet]
+        public IActionResult Pay(int id)
         {
-            return NotFound();
+            var payment = _context.PaymentsTbs.FirstOrDefault(p => p.Id == id);
+            if (payment == null || payment.Status != "Pending")
+            {
+                return NotFound();
+            }
+
+            return View(payment);
         }
 
-        return View(payment);
-    }
-
-    [HttpPost]
+        [HttpPost]
         public IActionResult ProcessPayment(int paymentId, decimal amount)
         {
             var payment = _context.PaymentsTbs.FirstOrDefault(p => p.Id == paymentId);
@@ -45,10 +46,22 @@ namespace PrelimCoop.Controllers
                 return NotFound();
             }
 
-            // Update payment status
-            payment.Status = "Paid";
+            // Ensure the payment amount does not exceed the collectable amount
+            if (amount > payment.Collectable)
+            {
+                ModelState.AddModelError("", "Payment amount exceeds the collectable amount.");
+                return View("Pay", payment);
+            }
 
-            // Update loan's PayableAmount
+            // Update payment status if the full amount is paid
+            if (amount == payment.Collectable)
+            {
+                payment.Status = "Paid";
+            }
+            
+            payment.Collectable -= amount;
+
+            // Update the loan's payable amount
             var loan = _context.LoanDbs.FirstOrDefault(l => l.Id == payment.LoanId);
             if (loan != null)
             {
@@ -57,8 +70,7 @@ namespace PrelimCoop.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index)); // Redirect to payments list or another appropriate page
+            return RedirectToAction("ViewPayments", new { clientId = payment.ClientId });
         }
     }
-
 }

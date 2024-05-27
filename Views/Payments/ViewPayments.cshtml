@@ -25,7 +25,7 @@
                 <td>
                     @if (payment.Status == "Pending")
                     {
-                        <a href="/payments/pay/@payment.Id" class="btn btn-primary">Pay Collectable</a>
+                        <a class="btn btn-primary" asp-action="Pay" asp-route-id="@payment.Id">Pay</a>
                     }
                 </td>
             </tr>

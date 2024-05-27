@@ -15,7 +15,7 @@ public partial class LoanDb
 
     public decimal Interest { get; set; }
 
-    public int NoOfPayment { get; set; } 
+    public int NoOfPayment { get; set; }
 
     public decimal Deduction { get; set; }
 

@@ -73,13 +73,13 @@ public partial class NotadocoopContext : DbContext
 
             entity.Property(e => e.Id).HasColumnType("int(50)");
             entity.Property(e => e.Amount).HasColumnType("int(50)");
-            entity.Property(e => e.ClientId).HasColumnType("int(200)");
+            entity.Property(e => e.ClientId).HasColumnType("int(10)");
             entity.Property(e => e.DateCreated).HasColumnName("Date_Created");
             entity.Property(e => e.Deduction).HasPrecision(10);
             entity.Property(e => e.DueDate).HasColumnName("Due_Date");
             entity.Property(e => e.Interest).HasPrecision(10);
             entity.Property(e => e.NoOfPayment)
-                .HasMaxLength(200)
+                .HasColumnType("int(10)")
                 .HasColumnName("No_Of_Payment");
             entity.Property(e => e.PayableAmount)
                 .HasPrecision(10)
@@ -105,9 +105,12 @@ public partial class NotadocoopContext : DbContext
                 .HasColumnType("int(50)")
                 .HasColumnName("client_id");
             entity.Property(e => e.Collectable)
-                .HasColumnType("int(50)")
+                .HasPrecision(10)
                 .HasColumnName("collectable");
             entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.Deduction)
+                .HasPrecision(10)
+                .HasColumnName("deduction");
             entity.Property(e => e.LoanId)
                 .HasColumnType("int(50)")
                 .HasColumnName("loan_id");
