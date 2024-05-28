@@ -52,7 +52,6 @@ namespace PrelimCoop.Controllers
                 return View("Pay", payment);
             }
 
-            // Update the payment and loan balances
             payment.Collectable -= amount;
             if (payment.Collectable == 0)
             {
