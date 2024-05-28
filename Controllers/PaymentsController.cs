@@ -46,26 +46,27 @@ namespace PrelimCoop.Controllers
                 return NotFound();
             }
 
-           
             if (amount > payment.Collectable)
             {
                 ModelState.AddModelError("", "Payment amount exceeds the collectable amount.");
                 return View("Pay", payment);
             }
 
-  
-            if (amount == payment.Collectable)
+            // Update the payment and loan balances
+            payment.Collectable -= amount;
+            if (payment.Collectable == 0)
             {
                 payment.Status = "Paid";
             }
-            
-            payment.Collectable -= amount;
 
-       
             var loan = _context.LoanDbs.FirstOrDefault(l => l.Id == payment.LoanId);
             if (loan != null)
             {
                 loan.PayableAmount -= amount;
+                if (loan.PayableAmount < 0)
+                {
+                    loan.PayableAmount = 0;
+                }
             }
 
             _context.SaveChanges();

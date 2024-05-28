@@ -24,12 +24,12 @@ namespace PrelimCoop.Controllers
         [HttpGet]
         public IActionResult View(int id)
         {
-            var loan = _context.PaymentsTbs.FirstOrDefault(q => q.Id == id);
+            var loan = _context.LoanDbs.FirstOrDefault(q => q.Id == id);
             if (loan == null)
             {
                 return NotFound();
             }
-            return View(loan.Id);
+            return View(loan);
         }
 
         [HttpGet]
@@ -44,7 +44,7 @@ namespace PrelimCoop.Controllers
             if (ModelState.IsValid)
             {
                 loan.DateCreated = DateOnly.FromDateTime(DateTime.Now);
-                loan.DueDate = DateOnly.FromDateTime(loan.DueDate.ToDateTime(TimeOnly.MinValue)); 
+                loan.DueDate = DateOnly.FromDateTime(loan.DueDate.ToDateTime(TimeOnly.MinValue));
                 _context.LoanDbs.Add(loan);
                 _context.SaveChanges();
 
@@ -58,47 +58,52 @@ namespace PrelimCoop.Controllers
         private void GeneratePaymentSchedule(LoanDb loan)
         {
             var paymentSchedules = new List<PaymentsTb>();
-            var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue); 
-            var clientid = loan.ClientId;
+            var startDate = loan.DateCreated.ToDateTime(TimeOnly.MinValue);
+            var clientId = loan.ClientId;
 
             double interestRate;
             TimeSpan interval;
             switch (loan.Type)
             {
                 case "Weekly":
-                    interestRate = 0.03; 
+                    interestRate = 0.03; // 3% weekly
                     interval = TimeSpan.FromDays(7);
                     break;
                 case "Monthly":
-                    interestRate = 0.05; 
-                    interval = TimeSpan.FromDays(30); 
+                    interestRate = 0.05; // 5% monthly
+                    interval = TimeSpan.FromDays(30); // Simplified month duration
                     break;
                 case "Daily":
                 default:
-                    interestRate = 0.01; 
+                    interestRate = 0.01; // 1% daily
                     interval = TimeSpan.FromDays(1);
                     break;
             }
 
-            double totalInterest = loan.Amount * interestRate * loan.NoOfPayment;
-            double totalAmountWithInterest = loan.Amount + totalInterest + loan.Deduction;
-            double paymentAmountPerPeriod = totalAmountWithInterest / loan.NoOfPayment;
+            double totalAmountWithInterest = loan.Amount * Math.Pow(1 + interestRate, loan.NoOfPayment);
+            double paymentAmountPerPeriod = Math.Round(totalAmountWithInterest / loan.NoOfPayment, 2);
+            double totalScheduledPayments = paymentAmountPerPeriod * loan.NoOfPayment;
+            double difference = totalScheduledPayments - totalAmountWithInterest;
+
+            if (difference > 0)
+            {
+                paymentAmountPerPeriod -= Math.Round(difference / loan.NoOfPayment, 2);
+            }
 
             for (int i = 0; i < loan.NoOfPayment; i++)
             {
+                double collectable = (i == loan.NoOfPayment - 1) ? totalAmountWithInterest - (paymentAmountPerPeriod * (loan.NoOfPayment - 1)) : paymentAmountPerPeriod;
                 paymentSchedules.Add(new PaymentsTb
                 {
                     LoanId = loan.Id,
-                    ClientId = clientid,
-                    Collectable = (decimal)paymentAmountPerPeriod,
-                    Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)), 
+                    ClientId = clientId,
+                    Collectable = (decimal)collectable,
+                    Date = DateOnly.FromDateTime(startDate.AddDays(i * interval.TotalDays)),
                     Status = "Pending",
-                    Deduction = (decimal)loan.Deduction / loan.NoOfPayment 
+                    Deduction = (decimal)(collectable - loan.Amount / loan.NoOfPayment) // Assuming Deduction is the interest part
                 });
             }
 
-            loan.PayableAmount = (decimal)totalAmountWithInterest; 
-            _context.LoanDbs.Update(loan);
             _context.PaymentsTbs.AddRange(paymentSchedules);
             _context.SaveChanges();
         }
