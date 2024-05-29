@@ -20,6 +20,8 @@ public partial class NotadocoopContext : DbContext
 
     public virtual DbSet<LoanDb> LoanDbs { get; set; }
 
+    public virtual DbSet<LoginTb> LoginTbs { get; set; }
+
     public virtual DbSet<PaymentsTb> PaymentsTbs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -90,6 +92,23 @@ public partial class NotadocoopContext : DbContext
             entity.Property(e => e.Status).HasMaxLength(200);
             entity.Property(e => e.Term).HasColumnType("int(10)");
             entity.Property(e => e.Type).HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<LoginTb>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("login_tb");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Password)
+                .HasMaxLength(50)
+                .HasColumnName("password");
+            entity.Property(e => e.Username)
+                .HasMaxLength(50)
+                .HasColumnName("username");
         });
 
         modelBuilder.Entity<PaymentsTb>(entity =>

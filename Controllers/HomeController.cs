@@ -5,14 +5,14 @@ using PrelimCoop.Models;
 namespace PrelimCoop.Controllers;
 
 public class HomeController : Controller
-{
+{   [Authorize]
     private readonly ILogger<HomeController> _logger;
-
+    
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
     }
-
+    
     public IActionResult Index()
     {
         return View();
