@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 08:13 PM
+-- Generation Time: May 29, 2024 at 08:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -74,13 +74,25 @@ CREATE TABLE `loan_db` (
   `Term` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `loan_db`
+-- Table structure for table `login_tb`
 --
 
-INSERT INTO `loan_db` (`Id`, `ClientId`, `Type`, `Amount`, `Interest`, `No_Of_Payment`, `Deduction`, `Status`, `Date_Created`, `Recievable_Amount`, `Payable_amount`, `Due_Date`, `Term`) VALUES
-(22, 6, 'Daily', 1000, 0, 5, 10, 'alive', '2024-05-27', 1000, 0, '2024-06-01', 0),
-(23, 6, 'Monthly', 1000, 0, 5, 50, 'alive', '2024-05-27', 1000, -25, '2024-10-27', 0);
+CREATE TABLE `login_tb` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `RememberMe` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_tb`
+--
+
+INSERT INTO `login_tb` (`id`, `username`, `password`, `RememberMe`) VALUES
+(1, 'admin', 'password', 0);
 
 -- --------------------------------------------------------
 
@@ -103,21 +115,51 @@ CREATE TABLE `payments_tb` (
 --
 
 INSERT INTO `payments_tb` (`id`, `loan_id`, `client_id`, `collectable`, `deduction`, `date`, `status`) VALUES
-(70, 21, 8, 0, 32, '2024-05-27', 'Paid'),
-(71, 21, 8, 0, 32, '2024-06-03', 'Paid'),
-(72, 21, 8, 0, 32, '2024-06-10', 'Paid'),
-(73, 21, 8, 0, 32, '2024-06-17', 'Paid'),
-(74, 21, 8, 0, 32, '2024-06-24', 'Paid'),
-(75, 22, 6, 0, 10, '2024-05-27', 'Paid'),
-(76, 22, 6, 0, 10, '2024-05-28', 'Paid'),
-(77, 22, 6, 0, 10, '2024-05-29', 'Paid'),
-(78, 22, 6, 0, 10, '2024-05-30', 'Paid'),
-(79, 22, 6, 0, 10, '2024-05-31', 'Paid'),
-(80, 23, 6, 0, 55, '2024-05-27', 'Paid'),
-(81, 23, 6, 0, 55, '2024-06-26', 'Paid'),
-(82, 23, 6, 0, 55, '2024-07-26', 'Paid'),
-(83, 23, 6, 0, 55, '2024-08-25', 'Paid'),
-(84, 23, 6, 0, 55, '2024-09-24', 'Paid');
+(95, 26, 6, 0, 0, '2024-05-29', 'Paid'),
+(96, 26, 6, 0, 0, '2024-05-30', 'Paid'),
+(97, 26, 6, 0, 0, '2024-05-31', 'Paid'),
+(98, 26, 6, 0, 0, '2024-06-01', 'Paid'),
+(99, 26, 6, 0, 0, '2024-06-02', 'Paid'),
+(100, 27, 6, 0, 0, '2024-05-29', 'Paid'),
+(101, 27, 6, 0, 0, '2024-06-05', 'Paid'),
+(102, 27, 6, 0, 0, '2024-06-12', 'Paid'),
+(103, 27, 6, 0, 0, '2024-06-19', 'Paid'),
+(104, 27, 6, 0, 0, '2024-06-26', 'Paid'),
+(105, 28, 6, 0, 31, '2024-05-29', 'Paid'),
+(106, 28, 6, 0, 31, '2024-06-05', 'Paid'),
+(107, 28, 6, 0, 31, '2024-06-12', 'Paid'),
+(108, 28, 6, 0, 31, '2024-06-19', 'Paid'),
+(109, 29, 8, 0, 32, '2024-05-29', 'Paid'),
+(110, 29, 8, 0, 32, '2024-06-05', 'Paid'),
+(111, 29, 8, 0, 32, '2024-06-12', 'Paid'),
+(112, 29, 8, 0, 32, '2024-06-19', 'Paid'),
+(113, 29, 8, 0, 32, '2024-06-26', 'Paid'),
+(114, 30, 8, 0, 10, '2024-05-29', 'Paid'),
+(115, 30, 8, 0, 10, '2024-05-30', 'Paid'),
+(116, 30, 8, 0, 10, '2024-05-31', 'Paid'),
+(117, 30, 8, 0, 10, '2024-06-01', 'Paid'),
+(118, 30, 8, 0, 10, '2024-06-02', 'Paid'),
+(119, 31, 6, 0, 32, '2024-05-29', 'Paid'),
+(120, 31, 6, 0, 32, '2024-06-05', 'Paid'),
+(121, 31, 6, 0, 32, '2024-06-12', 'Paid'),
+(122, 31, 6, 0, 32, '2024-06-19', 'Paid'),
+(123, 31, 6, 0, 32, '2024-06-26', 'Paid'),
+(124, 32, 6, 0, 31, '2024-05-29', 'Paid'),
+(125, 32, 6, 0, 31, '2024-06-05', 'Paid'),
+(126, 32, 6, 0, 31, '2024-06-12', 'Paid'),
+(127, 33, 6, 0, 10, '2024-05-29', 'Paid'),
+(128, 33, 6, 0, 10, '2024-05-30', 'Paid'),
+(129, 33, 6, 54, 10, '2024-05-31', 'Half Paid'),
+(130, 33, 6, 0, 10, '2024-06-01', 'Paid'),
+(131, 33, 6, 55, 10, '2024-06-02', 'Half Paid'),
+(132, 33, 6, 177, 10, '2024-06-03', 'Pending'),
+(133, 34, 6, 4, 1, '2024-05-29', 'Pending'),
+(134, 34, 6, 4, 1, '2024-06-28', 'Pending'),
+(135, 34, 6, 4, 1, '2024-07-28', 'Pending'),
+(136, 35, 8, 0, 0, '2024-05-29', 'Paid'),
+(137, 35, 8, 5, 0, '2024-05-30', 'Pending'),
+(138, 35, 8, 5, 0, '2024-05-31', 'Pending'),
+(139, 35, 8, 5, 0, '2024-06-01', 'Pending');
 
 --
 -- Indexes for dumped tables
@@ -134,6 +176,12 @@ ALTER TABLE `clients_info_tb`
 --
 ALTER TABLE `loan_db`
   ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `login_tb`
+--
+ALTER TABLE `login_tb`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payments_tb`
@@ -155,13 +203,19 @@ ALTER TABLE `clients_info_tb`
 -- AUTO_INCREMENT for table `loan_db`
 --
 ALTER TABLE `loan_db`
-  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `login_tb`
+--
+ALTER TABLE `login_tb`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `payments_tb`
 --
 ALTER TABLE `payments_tb`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
