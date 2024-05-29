@@ -6,17 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<NotadocoopContext>(options => 
     options.UseMySql("server=localhost;database=notadocoop;user=root", 
     Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb")));
 
-// Add cookie authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
+    .AddCookie(options => 
     {
-        options.LoginPath = "/Login/Index";
-        options.LogoutPath = "/Login/Logout";
+        options.LoginPath = "/Login";
         options.AccessDeniedPath = "/Login/AccessDenied";
     });
 
@@ -34,7 +31,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // Add this line
+app.UseAuthentication(); // Ensure this is added
 app.UseAuthorization();
 
 app.MapControllerRoute(
