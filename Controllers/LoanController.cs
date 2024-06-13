@@ -1,11 +1,15 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PrelimCoop.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace PrelimCoop.Controllers
 {
+    [Authorize] 
     public class LoanController : Controller
     {
         private readonly NotadocoopContext _context;
@@ -147,6 +151,92 @@ namespace PrelimCoop.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var loan = await _context.LoanDbs.FindAsync(id);
+            if (loan == null)
+            {
+                return NotFound();
+            }
+            return View(loan);
+        }
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,Type,Amount,NoOfPayment,Deduction,DateCreated,RecievableAmount,DueDate,PayableAmount,Interest,Term,Status")] LoanDb loan)
+{
+    if (id != loan.Id)
+    {
+        return NotFound();
+    }
+
+    if (ModelState.IsValid)
+    {
+        try
+        {
+            var existingLoan = await _context.LoanDbs.FindAsync(id);
+            if (existingLoan == null)
+            {
+                return NotFound();
+            }
+
+            // Update only the properties you want to change
+            existingLoan.ClientId = loan.ClientId;
+            existingLoan.Type = loan.Type;
+            existingLoan.Amount = loan.Amount;
+            existingLoan.NoOfPayment = loan.NoOfPayment;
+            existingLoan.Deduction = loan.Deduction;
+            existingLoan.DateCreated = loan.DateCreated;
+            existingLoan.RecievableAmount = loan.RecievableAmount;
+            existingLoan.DueDate = loan.DueDate;
+            existingLoan.PayableAmount = loan.PayableAmount;
+            existingLoan.Interest = loan.Interest;
+            existingLoan.Term = loan.Term;
+
+            // Log the updated loan details before saving
+            Console.WriteLine($"Updated Loan: {existingLoan.Id}, Status: {existingLoan.Status}");
+
+            _context.Update(existingLoan);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!LoanExists(loan.Id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+    }
+
+    // Log the model state errors if any
+    foreach (var state in ModelState)
+    {
+        foreach (var error in state.Value.Errors)
+        {
+            Console.WriteLine($"ModelState Error: {error.ErrorMessage}");
+        }
+    }
+
+    return View(loan);
+}
+
+
+
+        private bool LoanExists(int id)
+        {
+            return _context.LoanDbs.Any(e => e.Id == id);
+        }
     }
 }

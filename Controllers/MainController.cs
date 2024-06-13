@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PrelimCoop.Entities;
-
+using Microsoft.AspNetCore.Authorization;
 namespace PrelimCoop.Controllers
 {
+    [Authorize] 
 
     public class MainController : Controller
     {
