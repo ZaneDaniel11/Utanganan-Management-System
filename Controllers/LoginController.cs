@@ -1,77 +1,103 @@
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using PrelimCoop.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using PrelimCoop.Entities;
-using PrelimCoop.Models;
 using System.Security.Claims;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PrelimCoop.Controllers
 {
-    [Route("[controller]")]
     public class LoginController : Controller
     {
-        private readonly ILogger<LoginController> _logger;
         private readonly NotadocoopContext _context;
 
-        public LoginController(ILogger<LoginController> logger, NotadocoopContext context)
+        public LoginController(NotadocoopContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
-        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(LoginViewModel model)
+        public async Task<IActionResult> Index(string username, string password)
         {
-            if (ModelState.IsValid)
+            var user = _context.LoginTbs.FirstOrDefault(u => u.Username == username && u.Password == password);
+            if (user != null)
             {
-                var user = _context.LoginTbs.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-                if (user != null)
+                var claims = new List<Claim>
                 {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Username),
-                        new Claim("UserId", user.Id.ToString())
-                    };
+                    new Claim(ClaimTypes.Name, user.Username)
+                };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = user.RememberMe
+                };
 
-                    var authProperties = new AuthenticationProperties
-                    {
-                        IsPersistent = model.RememberMe
-                    };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return RedirectToAction("Index", "Home");
             }
 
-            return View(model);
+            ModelState.AddModelError("", "Invalid username or password");
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
         }
 
         [HttpPost]
-        [Route("logout")]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Register(string username, string password, string confirmPassword)
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            if (password != confirmPassword)
+            {
+                ModelState.AddModelError("", "Passwords do not match");
+                return View();
+            }
+
+            var existingUser = _context.LoginTbs.FirstOrDefault(u => u.Username == username);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("", "Username already exists");
+                return View();
+            }
+
+            var newUser = new LoginTb
+            {
+                Username = username,
+                Password = password
+            };
+
+            _context.LoginTbs.Add(newUser);
+            await _context.SaveChangesAsync();
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, newUser.Username)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
             return RedirectToAction("Index", "Home");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Logout()
         {
-            return View("Error!");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Login");
         }
     }
 }
