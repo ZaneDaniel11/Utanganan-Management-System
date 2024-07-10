@@ -2,7 +2,7 @@
 
 <h2>Payments</h2>
 
-<table class="table">
+<table class="display" id="list-table">
     <thead>
         <tr>
             <th>Loan ID</th>
@@ -32,4 +32,19 @@
         }
     </tbody>
 </table>
- <button class="btn btn-secondary print-btn" onclick="window.print()">Print</button>
+
+<button class="btn btn-secondary print-btn" onclick="window.print()">Print</button>
+
+<script>
+    // DataTables initialization with custom icons for pagination
+    $(document).ready(function() {
+        $('#list-table').DataTable({
+            "language": {
+                "paginate": {
+                    "previous": '<i class="fas fa-chevron-left"></i>',
+                    "next": '<i class="fas fa-chevron-right"></i>'
+                }
+            }
+        });
+    });
+</script>
